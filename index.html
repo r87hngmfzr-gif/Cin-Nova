@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ciné Nova</title>
+    <style>
+        /* Styles globaux & Ambiance Aesthetic */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #0d0d11; 
+            color: #e2e8f0;
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+        }
+
+        /* Barre d'en-tête principale */
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: linear-gradient(145deg, #13131a, #1c1c24);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Conteneur gauche pour la MaJ et la Version */
+        .left-header-block {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .update-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(138, 92, 246, 0.3);
+            padding: 10px 18px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            color: #a78bfa;
+            text-align: center;
+        }
+
+        /* Badge Version 0.1 */
+        .version-badge {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            color: #64748b;
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            text-align: center;
+            font-weight: 600;
+            letter-spacing: 1px;
+            width: fit-content;
+            margin: 0 auto;
+        }
+
+        /* Conteneur Central : Titre + Icône News */
+        .title-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .main-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin: 0;
+            background: linear-gradient(to right, #ff7eb3, #ff758c, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            cursor: pointer;
+        }
+
+        /* Bouton Icône Journal / News */
+        .news-btn {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 1.4rem;
+            padding: 10px;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .news-btn:hover {
+            background: rgba(167, 139, 250, 0.1);
+            border-color: rgba(167, 139, 250, 0.3);
+            transform: scale(1.08);
+        }
+
+        /* Conteneur Barre de recherche tout à droite */
+        .search-container {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 6px 14px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            width: 200px;
+        }
+
+        .search-container:focus-within {
+            border-color: rgba(167, 139, 250, 0.5);
+            background: rgba(255, 255, 255, 0.05);
+            width: 240px; 
+            box-shadow: 0 0 15px rgba(167, 139, 250, 0.1);
+        }
+
+        .search-input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #ffffff;
+            font-family: inherit;
+            font-size: 0.9rem;
+            width: 100%;
+        }
+
+        .search-input::placeholder {
+            color: #64748b;
+        }
+
+        .search-icon {
+            font-size: 1.1rem;
+            color: #a78bfa;
+            cursor: pointer;
+            margin-left: 8px;
+            user-select: none;
+        }
+
+        /* Message si aucun résultat */
+        .no-results-msg {
+            display: none;
+            text-align: center;
+            color: #64748b;
+            font-size: 1.1rem;
+            margin: 40px auto;
+            font-style: italic;
+        }
+
+        /* VUES PAGES */
+        .page-view {
+            display: none;
+            max-width: 1100px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .page-view.active { display: block; }
+
+        /* Bouton Retour */
+        .back-btn {
+            background: rgba(255, 255, 255, 0.05);
+            color: #a78bfa;
+            border: 1px solid rgba(138, 92, 246, 0.2);
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-bottom: 20px;
+            transition: all 0.2s;
+        }
+
+        .back-btn:hover {
+            background: rgba(138, 92, 246, 0.1);
+            transform: translateX(-3px);
+        }
+
+        /* Titres Intermédiaires */
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-top: 50px;
+            margin-bottom: 30px;
+            color: #ffffff;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(to right, #ff758c, #a78bfa);
+            border-radius: 2px;
+        }
+
+        /* Grilles */
+        .movies-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 40px; 
+        }
+
+        .small-movies-grid, .series-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        /* Structure des Cartes */
+        .movie-card {
+            background: linear-gradient(135deg, #13131a, #1a1a26);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .movie-card.large { min-height: 280px; }
+        .movie-card.small { min-height: 200px; }
+
+        .movie-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(167, 139, 250, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        }
+
+        .movie-info { padding: 30px; z-index: 2; }
+        .movie-card.small .movie-info { padding: 22px; }
+
+        .movie-type {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #ff7eb3; 
+            margin-bottom: 6px;
+            display: block;
+            font-weight: 600;
+        }
+
+        .movie-type.series-type {
+            color: #3b82f6; 
+        }
+
+        .movie-title {
+            margin: 0 0 12px 0;
+            font-weight: 700;
+            color: #ffffff;
+        }
+        .movie-card.large .movie-title { font-size: 2rem; }
+        .movie-card.small .movie-title { font-size: 1.4rem; }
+
+        .movie-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tag-genre {
+            background: rgba(255, 255, 255, 0.04);
+            color: #94a3b8;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .tag-provider {
+            background: rgba(167, 139, 250, 0.1);
+            color: #c084fc;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            border: 1px solid rgba(167, 139, 250, 0.2);
+        }
+
+        .tag-classification {
+            background: rgba(239, 68, 68, 0.1); 
+            color: #ef4444; 
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .tag-classification.all-audiences {
+            background: rgba(34, 197, 94, 0.1); 
+            color: #22c55e;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+        }
+
+        .movie-date { font-size: 0.9rem; color: #ff758c; font-weight: 500; }
+
+        /* Petit encadré vert pour "AU CINEMA !" */
+        .now-playing-badge {
+            background: rgba(34, 197, 94, 0.15);
+            border: 1px solid #22c55e;
+            color: #22c55e;
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            width: fit-content;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            display: none; /* Géré dynamiquement par JS */
+        }
+
+        /* Style pour l'emplacement vide Arrive bientôt */
+        .coming-soon-box {
+            background: rgba(255, 255, 255, 0.01);
+            border: 2px dashed rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            color: #64748b;
+            font-size: 1.1rem;
+            font-style: italic;
+            letter-spacing: 1px;
+        }
+
+        /* Résumés déroulants */
+        .movie-synopsis {
+            max-height: 0; 
+            overflow: hidden;
+            transition: max-height 0.4s ease, margin-top 0.4s ease, opacity 0.3s ease;
+            opacity: 0;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #94a3b8;
+            border-top: 1px dashed rgba(255, 255, 255, 0);
+        }
+
+        .movie-card.active .movie-synopsis {
+            max-height: 250px; 
+            opacity: 1;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+
+        .click-hint {
+            font-size: 0.7rem;
+            color: #64748b;
+            font-style: italic;
+            display: block;
+            margin-top: 12px;
+            text-align: right;
+        }
+
+        /* Styles pour la page Actus / News */
+        .news-container {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        /* Bloc épinglé pour les Réseaux */
+        .pinned-networks-box {
+            background: linear-gradient(135deg, rgba(167, 139, 250, 0.1), rgba(255, 117, 140, 0.05));
+            border: 2px dashed rgba(167, 139, 250, 0.4);
+            padding: 25px;
+            border-radius: 20px;
+            position: relative;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .pinned-tag {
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: linear-gradient(to right, #ff758c, #a78bfa);
+            color: #ffffff;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 20px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 10px rgba(167, 139, 250, 0.3);
+        }
+
+        .networks-title {
+            font-size: 1.3rem;
+            color: #ffffff;
+            margin: 5px 0 15px 0;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .network-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.05rem;
+            margin-bottom: 10px;
+            color: #e2e8f0;
+        }
+
+        .network-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .network-label {
+            font-weight: 700;
+            color: #ff7eb3;
+        }
+
+        .network-value {
+            color: #a78bfa;
+            font-family: monospace;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 2px 8px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .network-status {
+            font-style: italic;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .news-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 20px;
+            color: #94a3b8;
+            min-height: 100px;
+        }
+
+        @media (max-width: 900px) {
+            .header-container { flex-direction: column; gap: 15px; text-align: center; }
+            .search-container { width: 100% !important; }
+        }
+
+        @media (max-width: 768px) {
+            .movies-grid, .small-movies-grid, .series-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header-container">
+        <div class="left-header-block">
+            <div class="update-box">
+                <span>✨ Prochaine Mise à Jour : <b>30 Juillet 2026</b></span>
+            </div>
+            <div class="version-badge">Version 0.1</div>
+        </div>
+        
+        <div class="title-container">
+            <h1 class="main-title" onclick="showPage('home-page')">Ciné Nova</h1>
+            <button class="news-btn" onclick="showPage('news-page')">📰</button>
+        </div>
+
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Rechercher..." id="main-search" oninput="performSearch()">
+            <span class="search-icon">🔍</span>
+        </div>
+    </header>
+
+    <main class="page-view active" id="home-page">
+        
+        <div id="no-results" class="no-results-msg">Aucun contenu ne correspond à votre recherche.</div>
+
+        <div class="section-block" id="sect-affiche">
+            <h2 class="section-title" style="margin-top: 20px;">Films à l'affiche</h2>
+            <div class="movies-grid">
+                
+                <article class="movie-card large" data-date-sortie="2026-06-24" onclick="toggleSynopsis(this)">
+                    <div class="movie-info">
+                        <div class="now-playing-badge">🟢 AU CINÉMA !</div>
+                        <span class="movie-type">🎬 Film Long-Métrage</span>
+                        <h2 class="movie-title">Des Minions et des monstres</h2>
+                        <div class="movie-tags">
+                            <span class="tag-genre">Animation</span>
+                            <span class="tag-genre">Comédie</span>
+                            <span class="tag-classification all-audiences">Tout Public</span>
+                        </div>
+                        <div class="movie-date">📅 Sortie : 24 Juin 2026</div>
+                        <div class="movie-synopsis">
+                            Désireux de prouver leur courage, les Minions s'allient par accident à des créatures légendaires farfelues. Ensemble, ils devront faire face à une menace inattendue dans une aventure hilarante pleine de gaffes et de rebondissements.
+                        </div>
+                        <span class="click-hint">Cliquez pour voir le résumé</span>
+                    </div>
+                </article>
+
+                <article class="movie-card large" data-date-sortie="2026-06-15" onclick="toggleSynopsis(this)">
+                    <div class="movie-info">
+                        <div class="now-playing-badge">🟢 AU CINÉMA !</div>
+                        <span class="movie-type">🎬 Film • Pixar</span>
+                        <h2 class="movie-title">Toy Story 5</h2>
+                        <div class="movie-tags">
+                            <span class="tag-provider">Disney / Pixar</span>
+                            <span class="tag-genre">Animation</span>
+                            <span class="tag-genre">Aventure</span>
+                            <span class="tag-classification all-audiences">Tout Public</span>
+                        </div>
+                        <div class="movie-date">📅 Sortie : 15 Juin 2026</div>
+                        <div class="movie-synopsis">
+                            Woody, Buzz et toute la bande sont de retour pour faire face à un nouvel adversaire inattendu : la technologie et l'obsession des enfants modernes pour les écrans. Une aventure drôle et touchante sur l'évolution des jouets dans le monde d'aujourd'hui.
+                        </div>
+                        <span class="click-hint">Cliquez pour voir le résumé</span>
+                    </div>
+                </article>
+            </div>
+        </div>
+
+        <div class="section-block" id="sect-films">
+            <h2 class="section-title">Films</h2>
+            <div class="small-movies-grid">
+
+                <article class="movie-card small" data-date-sortie="2026-07-08" onclick="toggleSynopsis(this)">
+                    <div class="movie-info">
+                        <div class="now-playing-badge">🟢 AU CINÉMA !</div>
+                        <span class="movie-type">🎬 Film • Disney Live-Action</span>
+                        <h2 class="movie-title">Vaiana (Live-Action)</h2>
+                        <div class="movie-tags">
+                            <span class="tag-provider">Disney</span>
+                            <span class="tag-genre">Aventure</span>
+                            <span class="tag-genre">Fantastique</span>
+                            <span class="tag-classification all-audiences">Tout Public</span>
+                        </div>
+                        <div class="movie-date">📅 Sortie : 8 Juillet 2026</div>
+                        <div class="movie-synopsis">
+                            L'adaptation en prises de vues réelles du célèbre classique d'animation Disney. Suivez la jeune navigatrice déterminée à travers l'océan Pacifique aux côtés du demi-dieu Maui pour sauver son île et accomplir la quête de ses ancêtres.
+                        </div>
+                        <span class="click-hint">Cliquez pour voir le résumé</span>
+                    </div>
+                </article>
+
+                <article class="movie-card small" data-date-sortie="2026-07-29" onclick="toggleSynopsis(this)">
+                    <div class="movie-info">
+                        <div class="now-playing-badge">🟢 AU CINÉMA !</div>
+                        <span class="movie-type">🎬 Film • Marvel Studios / Sony</span>
+                        <h2 class="movie-title">Spider-Man: Brand New Day</h2>
+                        <div class="movie-tags">
+                            <span class="tag-provider">Marvel / Sony</span>
+                            <span class="tag-genre">Action</span>
+                            <span class="tag-genre">Science-Fiction</span>
+                            <span class="tag-classification">Avertissement</span>
+                        </div>
+                        <div class="movie-date">📅 Sortie : 29 Juillet 2026</div>
+                        <div class="movie-synopsis">
+                            Quatre ans se sont écoulés. Peter Parker, désormais jeune adulte, vit totalement isolé et s'est effacé de la mémoire de ses proches. Une nouvelle ère commence pour le tisseur de toile qui doit réapprendre à protéger Manhattan tout en gérant sa nouvelle réalité.
+                        </div>
+                        <span class="click-hint">Cliquez pour voir le résumé</span>
+                    </div>
+                </article>
+
+                <article class="movie-card small" data-date-sortie="2026-09-16" onclick="toggleSynopsis(this)">
+                    <div class="movie-info">
+                        <div class="now-playing-badge">🟢 AU CINÉMA !</div>
+                        <span class="movie-type">🎬 Film • Columbia / Constantin</span>
+                        <h2 class="movie-title">Resident Evil</h2>
+                        <div class="movie-tags">
+                            <span class="tag-provider">Cinéma / Columbia</span>
+                            <span class="tag-genre">Horreur</span>
+                            <span class="tag-genre">Action</span>
+                            <span class="tag-classification">Interdit (-12)</span>
+                        </div>
+                        <div class="movie-date">📅 Sortie : 16 Septembre 2026</div>
+                        <div class="movie-synopsis">
+                            Un tout nouveau reboot cinématographique ultra-fidèle et terrifiant basé sur les célèbres jeux vidéo d'horreur de Capcom. Plongez au cœur de l'angoisse et des conspirations biologiques de la multinationale Umbrella.
+                        </div>
+                        <span class="click-hint">Cliquez pour voir le résumé</span>
+                    </div>
+                </article>
+
+                <article class="movie-card small" data-date-sortie="2026-12-18" onclick="toggleSynopsis(this)">
+                    <div class="movie-info">
+                        <div class="now-playing-badge">🟢 AU CINÉMA !</div>
+                        <span class="movie-type">🎬 Film • Marvel Studios</span>
+                        <h2 class="movie-title">Avengers: Doomsday</h2>
+                        <div class="movie-tags">
+                            <span class="tag-provider">Marvel Studios</span>
+                            <span class="tag-genre">Action</span>
+                            <span class="tag-genre">Épique</span>
+                            <span class="tag-classification">Avertissement</span>
+                        </div>
+                        <div class="movie-date">📅 Sortie : 18 Décembre 2026</div>
+                        <div class="movie-synopsis">
+                            Le très attendu 5ème opus de la saga Avengers marquant le grand retour de Robert Downey Jr., cette fois dans le costume du redoutable Docteur Doom (Fatalis). Les héros de la Terre devront s'unir face à une menace multiverselle absolue.
+                        </div>
+                        <span class="click-hint">Cliquez pour voir le résumé</span>
+                    </div>
+                </article>
+                
+                <article class="movie-card small" data-date-sortie="2026-06-24" onclick="toggleSynopsis(this)">
+                    <div class="movie-info">
+                        <div class="now-playing-badge">🟢 AU CINÉMA !</div>
+                        <span class="movie-type">🎬 Film</span>
+                        <h2 class="movie-title">Les caprices de l'enfant roi</h2>
+                        <div class="movie-tags">
+                            <span class="tag-genre">Drame</span>
+                            <span class="tag-genre">Historique</span>
+                            <span class="tag-classification all-audiences">Tout Public</span>
+                        </div>
+                        <div class="movie-date">📅 Sortie : 24 Juin 2026</div>
+                        <div class="movie-synopsis">
+                            Dans un royaume lointain et fragile, les caprices d'un jeune héritier couronné trop tôt menacent la stabilité politique de la cour. Un récit poignant sur l'innocence face aux responsabilités du pouvoir absolu.
+                        </div>
+                        <span class="click-hint">Cliquez pour voir le résumé</span>
+                    </div>
+                </article>
+
+                <article class="movie-card small" data-date-sortie="2026-06-26" onclick="toggleSynopsis(this)">
+                    <div class="movie-info">
+                        <div class="now-playing-badge">🟢 AU CINÉMA !</div>
+                        <span class="movie-type">🎬 Film</span>
+                        <h2 class="movie-title">La bataille de Gaulle - P.2</h2>
+                        <div class="movie-tags">
+                            <span class="tag-genre">Guerre</span>
+                            <span class="tag-genre">Biographie</span>
+                            <span class="tag-classification">Avertissement</span>
+                        </div>
+                        <div class="movie-date">📅 Sortie : 26 Juin 2026</div>
+                        <div class="movie-synopsis">
+                            Le second volet de cette fresque historique majeure centré sur les moments décisifs de la Résistance. Un vibrant hommage au courage, aux choix stratégiques difficiles et aux mots qui ont façonné le destin d'une nation libre.
+                        </div>
+                        <span class="click-hint">Cliquez pour voir le résumé</span>
+                    </div>
+                </article>
+
+                <article class="movie-card small" data-date-sortie="2026-07-15" onclick="toggleSynopsis(this)">
+                    <div class="movie-info">
+                        <div class="now-playing-badge">🟢 AU CINÉMA !</div>
+                        <span class="movie-type">🎬 Film Long-Métrage</span>
+                        <h2 class="movie-title">L'Odyssée</h2>
+                        <div class="movie-tags">
+                            <span class="tag-genre">Action</span>
+                            <span class="tag-genre">Aventure</span>
+                            <span class="tag-classification">Avertissement (-12)</span>
+                        </div>
+                        <div class="movie-date">📅 Sortie : 15 Juillet 2026</div>
+                        <div class="movie-synopsis">
+                            Une fresque épique et spectaculaire qui réinvente les plus grands mythes maritimes. Suivez le voyage semé d'embûches d'un équipage courageux luttant contre les éléments et des forces mystérieuses pour retrouver le chemin de leur patrie.
+                        </div>
+                        <span class="click-hint">Cliquez pour voir le résumé</span>
+                    </div>
+                </article>
+
+                <article class="movie-card small" data-date-sortie="2026-06-17" onclick="toggleSynopsis(this)">
+                    <div class="movie-info">
+                        <div class="now-playing-badge">🟢 AU CINÉMA !</div>
+                        <span class="movie-type">🎬 Film • A24</span>
+                        <h2 class="movie-title">Backrooms</h2>
+                        <div class="movie-tags">
+                            <span class="tag-genre">Horreur</span>
+                            <span class="tag-genre">Mystère</span>
+                            <span class="tag-classification">Interdit (-12)</span>
+                        </div>
+                        <div class="movie-date">📅 Sortie : 17 Juin 2026</div>
+                        <div class="movie-synopsis">
+                            Inspiré du célèbre phénomène Internet d'horreur psychologique et des creepypastas. Un jeune vidéaste se retrouve accidentellement piégé dans un labyrinthe infini et oppressant de pièces vides aux murs jaunes, traqué par des entités mystérieuses.
+                        </div>
+                        <span class="click-hint">Cliquez pour voir le résumé</span>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+
+        <div class="section-block" id="sect-series">
+            <h2 class="section-title">Séries</h2>
+            <div class="series-grid">
+                
+                <article class="movie-card small" onclick="toggleSynopsis(this)">
+                    <div class="movie-info">
+                        <span class="movie-type series-type">📺 Série • Saison 3</span>
+                        <h2 class="movie-title">Euphoria</h2>
+                        <div class="movie-tags">
+                            <span class="tag-genre">Drame</span>
+                            <span class="tag-genre">Social</span>
+                            <span class="tag-classification">Interdit (-16)</span>
+                        </div>
+                        <div class="movie-date">📅 Sortie : 12 Avril 2026</div>
+                        <div class="movie-synopsis">
+                            Le retour tant attendu du drame poignant centré sur les réalités complexes, les addictions et les relations tumultueuses d'un groupe de lycéens cherchant leur voie vers l'âge adulte.
+                        </div>
+                        <span class="click-hint">Cliquez pour voir le résumé</span>
+                    </div>
+                </article>
+
+                <article class="movie-card small" onclick="toggleSynopsis(this)">
+                    <div class="movie-info">
+                        <span class="movie-type series-type">📺 Série • Saison 2</span>
+                        <h2 class="movie-title">Avatar: The Last Airbender</h2>
+                        <div class="movie-tags">
+                            <span class="tag-provider">Netflix</span>
+                            <span class="tag-genre">Fantastique</span>
+                            <span class="tag-genre">Aventure</span>
+                            <span class="tag-classification all-audiences">Tout Public</span>
+                        </div>
+                        <div class="movie-date">📅 Sortie : 25 Juin 2026</div>
+                        <div class="movie-synopsis">
+                            Aang et ses amis poursuivent leur voyage épique pour maîtriser les quatre éléments. De nouveaux défis et de puissants adversaires se dressent sur leur chemin pour restaurer l'équilibre du monde.
+                        </div>
+                        <span class="click-hint">Cliquez pour voir le résumé</span>
+                    </div>
+                </article>
+
+                <article class="movie-card small" onclick="toggleSynopsis(this)">
+                    <div class="movie-info">
+                        <span class="movie-type series-type">📺 Série • Saison 5</span>
+                        <h2 class="movie-title">The Bear</h2>
+                        <div class="movie-tags">
+                            <span class="tag-genre">Comédie Dramatique</span>
+                            <span class="tag-genre">Cuisine</span>
+                            <span class="tag-classification">Avertissement</span>
+                        </div>
+                        <div class="movie-date">📅 Sortie : 26 Juin 2026</div>
+                        <div class="movie-synopsis">
+                            La tension monte encore d'un cran en cuisine. Carmen et sa brigade font face à de nouveaux enjeux financiers et personnels colossaux pour maintenir l'excellence de leur restaurant étoilé.
+                        </div>
+                        <span class="click-hint">Cliquez pour voir le résumé</span>
+                    </div>
+                </article>
+
+                <article class="movie-card small" onclick="toggleSynopsis(this)">
+                    <div class="movie-info">
+                        <span class="movie-type series-type">📺 Série • Saison 4</span>
+                        <h2 class="movie-title">Lupin</h2>
+                        <div class="movie-tags">
+                            <span class="tag-provider">Netflix</span>
+                            <span class="tag-genre">Thriller</span>
+                            <span class="tag-genre">Crime</span>
+                            <span class="tag-classification">Avertissement</span>
+                        </div>
+                        <div class="movie-date">📅 Sortie : 23 Octobre 2026</div>
+                        <div class="movie-synopsis">
+                            Assane Diop revient pour de nouveaux casses ingénieux et insaisissables. Traqué de toutes parts, le gentleman cambrioleur devra faire preuve d'une audace sans précédent pour protéger ses proches et clore de vieux comptes.
+                        </div>
+                        <span class="click-hint">Cliquez pour voir le résumé</span>
+                    </div>
+                </article>
+
+                <article class="movie-card small" onclick="toggleSynopsis(this)">
+                    <div class="movie-info">
+                        <span class="movie-type series-type">📺 Série • Saison 1</span>
+                        <h2 class="movie-title">Harry Potter</h2>
+                        <div class="movie-tags">
+                            <span class="tag-genre">Fantastique</span>
+                            <span class="tag-genre">Magie</span>
+                            <span class="tag-classification all-audiences">Tout Public</span>
+                        </div>
+                        <div class="movie-date">📅 Sortie : 25 Décembre 2026</div>
+                        <div class="movie-synopsis">
+                            Une toute nouvelle adaptation fidèle de la célèbre saga littéraire. Redécouvrez la première année du jeune sorcier à l'école de Poudlard, entre mystères, amitiés naissantes et magie émerveillante.
+                        </div>
+                        <span class="click-hint">Cliquez pour voir le résumé</span>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+
+        <div class="section-block" id="sect-anime">
+            <h2 class="section-title">ANIMES</h2>
+            <div class="coming-soon-box">
+                Arrive bientôt 🚀
+            </div>
+        </div>
+    </main>
+
+    <main class="page-view" id="news-page">
+        <button class="back-btn" onclick="showPage('home-page')">← Retour à l'accueil</button>
+        <br>
+        <h2 class="section-title">ACTUS / NEWS</h2>
+        
+        <div class="news-container">
+            <div class="pinned-networks-box">
+                <span class="pinned-tag">📌 Épinglé</span>
+                <h3 class="networks-title">NOS RESEAUX</h3>
+                
+                <div class="network-item">
+                    <span>📱</span>
+                    <span class="network-label">TikTok :</span>
+                    <span class="network-value">@lagendapopp</span>
+                </div>
+                
+                <div class="network-item">
+                    <span>💬</span>
+                    <span class="network-label">Discord :</span>
+                    <span class="network-status">[ En construction... ]</span>
+                </div>
+            </div>
+
+            <div class="news-box">
+                </div>
+        </div>
+    </main>
+
+    <script>
+        // --- GESTION AUTOMATIQUE DES DATES DE CINÉMA ---
+        document.addEventListener("DOMContentLoaded", function() {
+            const aujourdhui = new Date();
+            aujourdhui.setHours(0, 0, 0, 0);
+
+            const cartesFilms = document.querySelectorAll(".movie-card[data-date-sortie]");
+
+            cartesFilms.forEach(carte => {
+                const dateSortieStr = carte.getAttribute("data-date-sortie");
+                if (!dateSortieStr) return;
+
+                const dateSortie = new Date(dateSortieStr);
+                dateSortie.setHours(0, 0, 0, 0);
+
+                const differenceTemps = aujourdhui.getTime() - dateSortie.getTime();
+                const differenceJours = Math.floor(differenceTemps / (1000 * 60 * 60 * 24));
+
+                if (differenceJours >= 0) {
+                    if (differenceJours > 10) {
+                        carte.remove();
+                    } else {
+                        const badgeVert = carte.querySelector(".now-playing-badge");
+                        const texteDate = carte.querySelector(".movie-date");
+
+                        if (badgeVert) badgeVert.style.display = "block";
+                        if (texteDate) texteDate.style.display = "none";
+                    }
+                }
+            });
+        });
+
+        // Navigation entre les pages
+        function showPage(pageId) {
+            document.querySelectorAll('.page-view').forEach(view => view.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            
+            if (pageId === 'home-page') {
+                performSearch();
+            }
+        }
+
+        // Dérouler/fermer le résumé
+        function toggleSynopsis(card) {
+            card.classList.toggle('active');
+            const hint = card.querySelector('.click-hint');
+            if (hint) {
+                if (card.classList.contains('active')) {
+                    hint.textContent = 'Cliquez pour refermer';
+                } else {
+                    hint.textContent = 'Cliquez pour voir le résumé';
+                }
+            }
+        }
+
+        // Moteur de recherche fonctionnel en temps réel
+        function performSearch() {
+            const query = document.getElementById('main-search').value.toLowerCase().trim();
+            const cards = document.querySelectorAll('#home-page .movie-card');
+            const sections = document.querySelectorAll('#home-page .section-block');
+            let totalVisible = 0;
+
+            cards.forEach(card => {
+                const title = card.querySelector('.movie-title').textContent.toLowerCase();
+                const type = card.querySelector('.movie-type') ? card.querySelector('.movie-type').textContent.toLowerCase() : "";
+                
+                let tagsText = "";
+                card.querySelectorAll('.tag-genre, .tag-provider').forEach(g => {
+                    tagsText += g.textContent.toLowerCase() + " ";
+                });
+
+                if (title.includes(query) || type.includes(query) || tagsText.includes(query)) {
+                    card.style.display = "flex";
+                    totalVisible++;
+                } else {
+                    card.style.display = "none";
+                }
+            });
+
+            sections.forEach(sect => {
+                if (sect.id === 'sect-anime') {
+                    if (query !== "" && ! "animes".includes(query)) {
+                        sect.style.display = "none";
+                    } else {
+                        sect.style.display = "block";
+                        if (query !== "") totalVisible++;
+                    }
+                    return;
+                }
+
+                const visibleInSect = sect.querySelectorAll('.movie-card[style="display: flex;"]').length;
+                
+                if (query !== "" && visibleInSect === 0) {
+                    sect.style.display = "none";
+                } else {
+                    sect.style.display = "block";
+                }
+            });
+
+            const noResultsMsg = document.getElementById('no-results');
+            if (totalVisible === 0 && query !== "") {
+                noResultsMsg.style.display = "block";
+            } else {
+                noResultsMsg.style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+</html>
