@@ -323,6 +323,19 @@
             display: none; /* Géré dynamiquement par JS */
         }
 
+        /* Style pour l'emplacement vide Arrive bientôt */
+        .coming-soon-box {
+            background: rgba(255, 255, 255, 0.01);
+            border: 2px dashed rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            color: #64748b;
+            font-size: 1.1rem;
+            font-style: italic;
+            letter-spacing: 1px;
+        }
+
         /* Résumés déroulants */
         .movie-synopsis {
             max-height: 0; 
@@ -359,7 +372,7 @@
             gap: 25px;
         }
 
-        /* Blocs épinglés */
+        /* Bloc épinglé pour les Réseaux */
         .pinned-networks-box {
             background: linear-gradient(135deg, rgba(167, 139, 250, 0.1), rgba(255, 117, 140, 0.05));
             border: 2px dashed rgba(167, 139, 250, 0.4);
@@ -449,11 +462,11 @@
     <header class="header-container">
         <div class="left-header-block">
             <div class="update-box">
-                <span id="countdown-text">⏳ Prochaine MÀJ : <b>Chargement...</b></span>
+                <span id="countdown-text">⏳ Prochaine MÀJ dans : <b>Chargement...</b></span>
             </div>
             <div class="version-badge" id="app-version">Version 0.1</div>
         </div>
-         
+        
         <div class="title-container">
             <h1 class="main-title" onclick="showPage('home-page')">Ciné Nova</h1>
             <button class="news-btn" onclick="showPage('news-page')">📰</button>
@@ -466,13 +479,13 @@
     </header>
 
     <main class="page-view active" id="home-page">
-         
+        
         <div id="no-results" class="no-results-msg">Aucun contenu ne correspond à votre recherche.</div>
 
         <div class="section-block" id="sect-affiche">
             <h2 class="section-title" style="margin-top: 20px;">Films à l'affiche</h2>
             <div class="movies-grid">
-                 
+                
                 <article class="movie-card large" data-date-sortie="2026-06-24" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
                         <div class="now-playing-badge">🟢 AU CINÉMA !</div>
@@ -591,7 +604,7 @@
                         <span class="click-hint">Cliquez pour voir le résumé</span>
                     </div>
                 </article>
-                 
+                
                 <article class="movie-card small" data-date-sortie="2026-06-24" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
                         <div class="now-playing-badge">🟢 AU CINÉMA !</div>
@@ -735,7 +748,7 @@
                         </div>
                         <div class="movie-date">📅 Sortie : 25 Décembre 2026</div>
                         <div class="movie-synopsis">
-                            La toute première saison de l'adaptation en série des célèbres romans de J.K. Rowling. Une immersion inédite et ultra-fidèle, livre par livre, pour redécouvrir le monde magique de Poudlard et la scolarité d'Harry, Ron et Hermione.
+                            Une toute nouvelle adaptation fidèle de la célèbre saga littéraire. Redécouvrez la première année du jeune sorcier à l'école de Poudlard, entre mystères, amitiés naissantes et magie émerveillante.
                         </div>
                         <span class="click-hint">Cliquez pour voir le résumé</span>
                     </div>
@@ -743,142 +756,182 @@
 
             </div>
         </div>
-    </main>
 
-    <main class="page-view" id="news-page">
-        <button class="back-btn" onclick="showPage('home-page')">⬅ Retour à l'accueil</button>
-        
-        <div class="news-container">
-            <div class="pinned-networks-box" style="border-color: rgba(239, 68, 68, 0.4); background: linear-gradient(135deg, rgba(239, 68, 68, 0.05), rgba(255, 117, 140, 0.02));">
-                <span class="pinned-tag" style="background: linear-gradient(to right, #ef4444, #ff758c);">Important</span>
-                <h3 class="networks-title">⚠️ Assistance & Retours</h3>
-                <p style="margin: 5px 0 0 0; color: #e2e8f0; font-size: 1.05rem;">
-                    Si vous rencontrez le moindre problème, veuillez me le signaler en MP sur mon compte <b>TikTok</b>.
-                </p>
-            </div>
-
-            <div class="pinned-networks-box">
-                <span class="pinned-tag">Communauté</span>
-                <h3 class="networks-title">Rejoignez la communauté Ciné Nova</h3>
-                <div class="network-item">
-                    <span class="network-label">Discord :</span>
-                    <span class="network-value">discord.gg/cinenova</span>
-                </div>
-                <div class="network-item">
-                    <span class="network-label">Instagram :</span>
-                    <span class="network-value">@CineNova_Actu</span>
-                    <span class="network-status">(Bientôt disponible)</span>
-                </div>
-            </div>
-
-            <div class="news-box">
-                <h3 style="color: #ffffff; margin-top: 0;">🚀 Lancement de la version bêta !</h3>
-                <p>Bienvenue sur Ciné Nova ! L'interface est en cours de déploiement. Retrouvez très bientôt des fiches détaillées, des bandes-annonces exclusives et un espace membre pour planifier vos séances.</p>
-                <span style="font-size: 0.8rem; color: #64748b;">Publié le 22 Juin 2026</span>
+        <div class="section-block" id="sect-anime">
+            <h2 class="section-title">ANIMES</h2>
+            <div class="coming-soon-box">
+                Non disponible pour le moment 🚫
             </div>
         </div>
     </main>
 
+    <main class="page-view" id="news-page">
+        <button class="back-btn" onclick="showPage('home-page')">← Retour à l'accueil</button>
+        <br>
+        <h2 class="section-title">ACTUS / NEWS</h2>
+        
+        <div class="news-container">
+            <div class="pinned-networks-box">
+                <span class="pinned-tag">📌 Épinglé</span>
+                <h3 class="networks-title">NOS RESEAUX</h3>
+                
+                <div class="network-item">
+                    <span>📱</span>
+                    <span class="network-label">TikTok :</span>
+                    <span class="network-value">@lagendapopp</span>
+                </div>
+                
+                <div class="network-item">
+                    <span>💬</span>
+                    <span class="network-label">Discord :</span>
+                    <span class="network-status">[ En construction... ]</span>
+                </div>
+
+                <div class="network-item">
+                    <span>▶️</span>
+                    <span class="network-label">YouTube :</span>
+                    <span class="network-status">[ En construction... ]</span>
+                </div>
+            </div>
+
+            <div class="news-box">
+                </div>
+        </div>
+    </main>
+
     <script>
-        // --- FONCTIONS DE NAVIGATION DE PAGES ---
-        function showPage(pageId) {
-            const pages = document.querySelectorAll('.page-view');
-            pages.forEach(page => page.classList.remove('active'));
-            
-            const targetPage = document.getElementById(pageId);
-            if (targetPage) {
-                targetPage.classList.add('active');
+        // --- TIMER DE MISE À JOUR (Cible : 20 Juillet 2026 à minuit) ---
+        const dateCible = new Date("Jul 20, 2026 00:00:00").getTime();
+
+        const x = setInterval(function() {
+            const maintenant = new Date().getTime();
+            const distance = dateCible - maintenant;
+
+            // Calcul du temps pour les jours, heures, minutes et secondes
+            const jours = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const heures = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const secondes = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Rendu dynamique du texte dans la case de gauche
+            document.getElementById("countdown-text").innerHTML = "⏳ Prochaine MÀJ dans : <b>" + jours + "j " + heures + "h " + minutes + "m " + secondes + "s</b>";
+
+            // Si le compte à rebours expire
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown-text").innerHTML = "✨ <b>Mise à jour en cours...</b>";
+                // Changement de version à l'arrivée à zéro
+                document.getElementById("app-version").textContent = "Version 0.2";
             }
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 1000);
+
+
+        // --- GESTION AUTOMATIQUE DES DATES DE CINÉMA ---
+        document.addEventListener("DOMContentLoaded", function() {
+            const aujourdhui = new Date();
+            aujourdhui.setHours(0, 0, 0, 0);
+
+            const cartesFilms = document.querySelectorAll(".movie-card[data-date-sortie]");
+
+            cartesFilms.forEach(carte => {
+                const dateSortieStr = carte.getAttribute("data-date-sortie");
+                if (!dateSortieStr) return;
+
+                const dateSortie = new Date(dateSortieStr);
+                dateSortie.setHours(0, 0, 0, 0);
+
+                const differenceTemps = aujourdhui.getTime() - dateSortie.getTime();
+                const differenceJours = Math.floor(differenceTemps / (1000 * 60 * 60 * 24));
+
+                if (differenceJours >= 0) {
+                    if (differenceJours > 10) {
+                        carte.remove();
+                    } else {
+                        const badgeVert = carte.querySelector(".now-playing-badge");
+                        const texteDate = carte.querySelector(".movie-date");
+
+                        if (badgeVert) badgeVert.style.display = "block";
+                        if (texteDate) texteDate.style.display = "none";
+                    }
+                }
+            });
+        });
+
+        // Navigation entre les pages
+        function showPage(pageId) {
+            document.querySelectorAll('.page-view').forEach(view => view.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            
+            if (pageId === 'home-page') {
+                performSearch();
+            }
         }
 
-        // --- ACCORDÉON / SYNOPSIS ---
+        // Dérouler/fermer le résumé
         function toggleSynopsis(card) {
             card.classList.toggle('active');
+            const hint = card.querySelector('.click-hint');
+            if (hint) {
+                if (card.classList.contains('active')) {
+                    hint.textContent = 'Cliquez pour refermer';
+                } else {
+                    hint.textContent = 'Cliquez pour voir le résumé';
+                }
+            }
         }
 
-        // --- MOTEUR DE RECHERCHE ---
+        // Moteur de recherche fonctionnel en temps réel
         function performSearch() {
             const query = document.getElementById('main-search').value.toLowerCase().trim();
-            const cards = document.querySelectorAll('.movie-card');
-            const sections = document.querySelectorAll('.section-block');
-            const noResultsMsg = document.getElementById('no-results');
+            const cards = document.querySelectorAll('#home-page .movie-card');
+            const sections = document.querySelectorAll('#home-page .section-block');
             let totalVisible = 0;
 
             cards.forEach(card => {
                 const title = card.querySelector('.movie-title').textContent.toLowerCase();
-                const type = card.querySelector('.movie-type').textContent.toLowerCase();
-                const tags = Array.from(card.querySelectorAll('.movie-tags span'))
-                                  .map(t => t.textContent.toLowerCase());
+                const type = card.querySelector('.movie-type') ? card.querySelector('.movie-type').textContent.toLowerCase() : "";
                 
-                const matchesQuery = title.includes(query) || 
-                                     type.includes(query) || 
-                                     tags.some(tag => tag.includes(query));
+                let tagsText = "";
+                card.querySelectorAll('.tag-genre, .tag-provider').forEach(g => {
+                    tagsText += g.textContent.toLowerCase() + " ";
+                });
 
-                if (matchesQuery) {
-                    card.style.display = 'flex';
+                if (title.includes(query) || type.includes(query) || tagsText.includes(query)) {
+                    card.style.display = "flex";
                     totalVisible++;
                 } else {
-                    card.style.display = 'none';
+                    card.style.display = "none";
                 }
             });
 
-            // Masquer ou afficher les sections selon si elles contiennent des cartes visibles
-            sections.forEach(section => {
-                const structuralGrid = section.querySelector('.movies-grid, .small-movies-grid, .series-grid');
-                const internalCards = structuralGrid.querySelectorAll('.movie-card');
-                const blockHasVisible = Array.from(internalCards).some(c => c.style.display !== 'none');
-                section.style.display = blockHasVisible ? 'block' : 'none';
-            });
-
-            // Gestion du message "Aucun résultat"
-            noResultsMsg.style.display = (totalVisible === 0 && query !== '') ? 'block' : 'none';
-        }
-
-        // --- INITIALISATION AU CHARGEMENT ---
-        document.addEventListener("DOMContentLoaded", () => {
-            // 1. Initialisation des Badges "AU CINÉMA !" dynamiques (uniquement si la date est passée ou égale)
-            const today = new Date('2026-06-22'); // Ancrage temporel système
-            const movieCards = document.querySelectorAll('.movie-card[data-date-sortie]');
-
-            movieCards.forEach(card => {
-                const releaseDateStr = card.getAttribute('data-date-sortie');
-                if (releaseDateStr) {
-                    const releaseDate = new Date(releaseDateStr);
-                    const badge = card.querySelector('.now-playing-badge');
-                    if (badge) {
-                        if (today >= releaseDate) {
-                            badge.style.display = 'inline-block';
-                        } else {
-                            badge.style.display = 'none';
-                        }
-                    }
-                }
-            });
-
-            // 2. Compte à rebours fictif pour la prochaine mise à jour (Exemple de 4 heures glissantes)
-            const countdownElement = document.getElementById('countdown-text');
-            if (countdownElement) {
-                let totalSeconds = 4 * 60 * 60; // 4 heures
-                
-                const updateTimer = () => {
-                    const hrs = Math.floor(totalSeconds / 3600);
-                    const mins = Math.floor((totalSeconds % 3600) / 60);
-                    const secs = totalSeconds % 60;
-                    
-                    countdownElement.innerHTML = `⏳ Prochaine MÀJ : <b>${hrs.toString().padStart(2, '0')}h ${mins.toString().padStart(2, '0')}m ${secs.toString().padStart(2, '0')}s</b>`;
-                    
-                    if (totalSeconds > 0) {
-                        totalSeconds--;
+            sections.forEach(sect => {
+                if (sect.id === 'sect-anime') {
+                    if (query !== "" && ! "animes".includes(query)) {
+                        sect.style.display = "none";
                     } else {
-                        totalSeconds = 4 * 60 * 60; // Reset automatique
+                        sect.style.display = "block";
+                        if (query !== "") totalVisible++;
                     }
-                };
+                    return;
+                }
+
+                const visibleInSect = sect.querySelectorAll('.movie-card[style="display: flex;"]').length;
                 
-                updateTimer();
-                setInterval(updateTimer, 1000);
+                if (query !== "" && visibleInSect === 0) {
+                    sect.style.display = "none";
+                } else {
+                    sect.style.display = "block";
+                }
+            });
+
+            const noResultsMsg = document.getElementById('no-results');
+            if (totalVisible === 0 && query !== "") {
+                noResultsMsg.style.display = "block";
+            } else {
+                noResultsMsg.style.display = "none";
             }
-        });
+        }
     </script>
+
 </body>
 </html>
