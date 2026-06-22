@@ -462,7 +462,7 @@
     <header class="header-container">
         <div class="left-header-block">
             <div class="update-box">
-                <span>✨ Prochaine Mise à Jour : <b>30 Juillet 2026</b></span>
+                <span id="countdown-text">✨ Prochaine MÀJ : <b>Chargement...</b></span>
             </div>
             <div class="version-badge">Version 0.1</div>
         </div>
@@ -653,7 +653,7 @@
                         </div>
                         <div class="movie-date">📅 Sortie : 15 Juillet 2026</div>
                         <div class="movie-synopsis">
-                            Une fresque épique et spectaculaire qui réinvente les plus grands mythes maritimes. Suivez le voyage semé d'embûches d'un équipage courageux luttant contre les éléments et des forces mystérieuses pour retrouver le chemin de leur patrie.
+                            Une fresque épique et spectaculaire qui réinvente les plus grands mythes maritimes. Suivez le voyage semé d'embûches d'un équipage courageux luttant contre les éléments et des forces mystérieures pour retrouver le chemin de leur patrie.
                         </div>
                         <span class="click-hint">Cliquez pour voir le résumé</span>
                     </div>
@@ -671,7 +671,7 @@
                         </div>
                         <div class="movie-date">📅 Sortie : 17 Juin 2026</div>
                         <div class="movie-synopsis">
-                            Inspiré du célèbre phénomène Internet d'horreur psychologique et des creepypastas. Un jeune vidéaste se retrouve accidentellement piégé dans un labyrinthe infini et oppressant de pièces vides aux murs jaunes, traqué par des entités mystérieuses.
+                            Inspiré du célèbre phénomène Internet d'horreur psychologique et des creepypastas. Un jeune vidéaste se retrouve accidentellement piégé dans un labyrinthe infini et oppressant de pièces vides aux muros jaunes, traqué par des entités mystérieuses.
                         </div>
                         <span class="click-hint">Cliquez pour voir le résumé</span>
                     </div>
@@ -811,6 +811,30 @@
     </main>
 
     <script>
+        // --- TIMER DE MISE À JOUR GLOBAL (Cible : 36 Juillet 2026 = 5 Août 2026) ---
+        const dateCible = new Date("Aug 5, 2026 00:00:00").getTime();
+
+        const x = setInterval(function() {
+            const maintenant = new Date().getTime();
+            const distance = dateCible - maintenant;
+
+            // Calcul du temps pour les jours, heures, minutes et secondes
+            const jours = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const heures = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const secondes = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Structure du texte affiché
+            document.getElementById("countdown-text").innerHTML = "⏳ Prochaine MÀJ dans : <b>" + jours + "j " + heures + "h " + minutes + "m " + secondes + "s</b>";
+
+            // Si le compte à rebours est fini
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown-text").innerHTML = "✨ <b>Mise à jour imminente !</b>";
+            }
+        }, 1000);
+
+
         // --- GESTION AUTOMATIQUE DES DATES DE CINÉMA ---
         document.addEventListener("DOMContentLoaded", function() {
             const aujourdhui = new Date();
