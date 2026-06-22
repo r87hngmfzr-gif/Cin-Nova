@@ -42,7 +42,7 @@
             text-align: center;
         }
 
-        /* Badge Version 0.1 */
+        /* Badge Version */
         .version-badge {
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(255, 255, 255, 0.05);
@@ -464,7 +464,7 @@
             <div class="update-box">
                 <span id="countdown-text">⏳ Prochaine MÀJ dans : <b>Chargement...</b></span>
             </div>
-            <div class="version-badge">Version 0.1</div>
+            <div class="version-badge" id="app-version">Version 0.1</div>
         </div>
         
         <div class="title-container">
@@ -498,7 +498,7 @@
                         </div>
                         <div class="movie-date">📅 Sortie : 24 Juin 2026</div>
                         <div class="movie-synopsis">
-                            Désireux de prouver leur courage, les Minions s'allient par accident à des créatures légendaires farfelues. Ensemble, ils devront faire face à une menace inattendue dans une aventure hilarante pleine de gaffes et de rebondissements.
+                            Désireux de prouver leur courage, les Minions s'allient par accident à des créatures légendaires farfelues. Ensemble, they devront faire face à une menace inattendue dans une aventure hilarante pleine de gaffes et de rebondissements.
                         </div>
                         <span class="click-hint">Cliquez pour voir le résumé</span>
                     </div>
@@ -811,8 +811,8 @@
     </main>
 
     <script>
-        // --- TIMER DE MISE À JOUR (Cible : 36 Juillet = 5 Août 2026) ---
-        const dateCible = new Date("Aug 5, 2026 00:00:00").getTime();
+        // --- TIMER DE MISE À JOUR (Cible : 20 Juillet 2026 à minuit) ---
+        const dateCible = new Date("Jul 20, 2026 00:00:00").getTime();
 
         const x = setInterval(function() {
             const maintenant = new Date().getTime();
@@ -831,6 +831,8 @@
             if (distance < 0) {
                 clearInterval(x);
                 document.getElementById("countdown-text").innerHTML = "✨ <b>Mise à jour en cours...</b>";
+                // Changement de version à l'arrivée à zéro
+                document.getElementById("app-version").textContent = "Version 0.2";
             }
         }, 1000);
 
