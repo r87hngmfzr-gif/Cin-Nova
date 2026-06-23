@@ -191,7 +191,7 @@
             align-items: center;
             justify-content: center;
             transition: all 0.2s ease;
-            margin-left: auto; /* Force la séparation vers la droite */
+            margin-left: auto;
             flex-grow: 0;
         }
 
@@ -236,6 +236,26 @@
             color: #ffffff;
             box-shadow: 0 6px 25px rgba(167, 139, 250, 0.25);
             background: linear-gradient(135deg, #1c1c2b, #151522);
+        }
+
+        /* STYLE POUR LE LOGO FLOTTANT EN BAS À DROITE */
+        .floating-logo {
+            position: fixed;
+            bottom: 90px; /* Placé juste au-dessus du bouton de retour en haut */
+            right: 30px;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%; /* Image parfaitement ronde */
+            border: 2px solid rgba(167, 139, 250, 0.5); /* Contour violet néon */
+            box-shadow: 0 4px 15px rgba(167, 139, 250, 0.3);
+            cursor: pointer;
+            z-index: 998;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .floating-logo:hover {
+            transform: scale(1.1) rotate(5deg);
+            border-color: #ff758c; /* Passe au rose au survol */
         }
 
         /* Message si aucun résultat */
@@ -408,7 +428,7 @@
 
         .movie-date { font-size: 0.9rem; color: #ff758c; font-weight: 500; }
 
-        /* Badge vert pour le contenu disponible (Films, Séries et Animes) */
+        /* Badge vert pour le contenu disponible */
         .now-playing-badge {
             background: rgba(34, 197, 94, 0.15);
             border: 1px solid #22c55e;
@@ -437,7 +457,7 @@
             width: fit-content;
             margin-bottom: 12px;
             text-transform: uppercase;
-            display: none; /* Géré en JavaScript via data-date-ajout */
+            display: none; 
         }
 
         /* Style pour l'emplacement vide Arrive bientôt / Indisponible */
@@ -489,7 +509,6 @@
             gap: 25px;
         }
 
-        /* Blocs épinglés pour les Actus / News */
         .pinned-networks-box {
             background: linear-gradient(135deg, rgba(167, 139, 250, 0.1), rgba(255, 117, 140, 0.05));
             border: 2px dashed rgba(167, 139, 250, 0.4);
@@ -499,7 +518,6 @@
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
         }
 
-        /* Style spécifique pour le bloc Alerte */
         .pinned-networks-box.alert-style {
             background: linear-gradient(135deg, rgba(239, 68, 68, 0.12), rgba(255, 117, 140, 0.05));
             border-color: rgba(239, 68, 68, 0.4);
@@ -549,15 +567,8 @@
             color: #e2e8f0;
         }
 
-        .network-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .network-label {
-            font-weight: 700;
-            color: #ff7eb3;
-        }
-
+        .network-item:last-child { margin-bottom: 0; }
+        .network-label { font-weight: 700; color: #ff7eb3; }
         .network-value {
             color: #a78bfa;
             font-family: monospace;
@@ -566,13 +577,7 @@
             border-radius: 6px;
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
-
-        .network-status {
-            font-style: italic;
-            color: #64748b;
-            font-size: 0.9rem;
-        }
-
+        .network-status { font-style: italic; color: #64748b; font-size: 0.9rem; }
         .news-box {
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(255, 255, 255, 0.05);
@@ -598,6 +603,8 @@
 <body>
 
     <button class="scroll-to-top-btn" id="scrollTopBtn" onclick="scrollToTop()" title="Remonter en haut">↑</button>
+
+    <img src="nom_de_ton_image.png" alt="Logo Ciné Nova" class="floating-logo" onclick="showPage('home-page')" title="Retour à l'accueil">
 
     <header class="header-container">
         <div class="left-header-block">
@@ -648,7 +655,7 @@
                         </div>
                         <div class="movie-date">📅 Sortie : 24 Juin 2026</div>
                         <div class="movie-synopsis">
-                            Désireux de prouver leur courage, les Minions s'allient par accident à des créatures légendaires farfelues. Ensemble, they devront faire face à une menace inattendue dans une aventure hilarante pleine de gaffes et de rebondissements.
+                            Désireux de prouver leur courage, les Minions s'allient par accident à des créatures légendaires farfelues. Ensemble, ils devront faire face à une menace inattendue dans une aventure hilarante pleine de gaffes et de rebondissements.
                         </div>
                         <span class="click-hint">Cliquez pour voir le résumé</span>
                     </div>
@@ -916,7 +923,7 @@
                         </div>
                         <div class="movie-date">📅 Sortie : 23 Octobre 2026</div>
                         <div class="movie-synopsis">
-                            Assane Diop revient pour de nouveaux casses ingénieux et insaisissables. Traqué de toutes parts, le gentleman cambrioleur devra faire preuve d'une audace sans precedent pour protéger ses proches et clore de vieux comptes.
+                            Assane Diop revient pour de nouveaux casses ingénieux et insaisissables. Traqué de toutes parts, le gentleman cambrioleur devra faire preuve d'une audace sans précédent pour protéger ses proches et clore de vieux comptes.
                         </div>
                         <span class="click-hint">Cliquez pour voir le résumé</span>
                     </div>
@@ -946,13 +953,10 @@
 
         <div class="section-block" id="sect-anime">
             <h2 class="section-title" id="title-anime">ANIMES</h2>
-            
             <div class="coming-soon-box" id="anime-placeholder">
                 Non disponible pour le moment 🚫
             </div>
-            
-            <div class="anime-grid" id="anime-container">
-            </div>
+            <div class="anime-grid" id="anime-container"></div>
         </div>
 
         <div class="section-block" id="sect-calendar">
@@ -970,38 +974,32 @@
         <h2 class="section-title">ACTUS / NEWS</h2>
         
         <div class="news-container">
-            
             <div class="pinned-networks-box alert-style">
                 <span class="pinned-tag alert-tag">📌 Épinglé</span>
                 <h3 class="networks-title">Alerte</h3>
-                <p class="alert-message-text"><b>Si vous avez le moindre problème/bugs, alors n'hésité pas à m'alerter en MP sur TikTok</b></p>
+                <p class="alert-message-text"><b>Si vous avez le moindre problème/bugs, alors n'hésitez pas à m'alerter en MP sur TikTok</b></p>
             </div>
 
             <div class="pinned-networks-box">
                 <span class="pinned-tag">📌 Épinglé</span>
                 <h3 class="networks-title">NOS RESEAUX</h3>
-                
                 <div class="network-item">
                     <span>📱</span>
                     <span class="network-label">TikTok :</span>
                     <span class="network-value">@cinenovvaa</span>
                 </div>
-                
                 <div class="network-item">
                     <span>💬</span>
                     <span class="network-label">Discord :</span>
                     <span class="network-status">[ En construction... ]</span>
                 </div>
-
                 <div class="network-item">
                     <span>▶️</span>
                     <span class="network-label">YouTube :</span>
                     <span class="network-status">[ En construction... ]</span>
                 </div>
             </div>
-
-            <div class="news-box">
-            </div>
+            <div class="news-box"></div>
         </div>
     </main>
 
@@ -1027,7 +1025,6 @@
             }
         }, 1000);
 
-
         // --- GESTION DU BOUTON RETOUR EN HAUT (SCROLL) ---
         const scrollTopBtn = document.getElementById("scrollTopBtn");
 
@@ -1040,23 +1037,18 @@
         };
 
         function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
+            window.scrollTo({ top: 0, behavior: "smooth" });
         }
 
-
-        // --- GESTION AUTOMATIQUE GLOBALE (FILMS, SÉRIES, ANIMES) ---
+        // --- GESTION AUTOMATIQUE GLOBALE ---
         document.addEventListener("DOMContentLoaded", function() {
             const aujourdhui = new Date();
             aujourdhui.setHours(0, 0, 0, 0);
 
-            // Cible absolument TOUTES les cartes possédant une date de sortie
             const cartesContenus = document.querySelectorAll(".movie-card[data-date-sortie]");
 
             cartesContenus.forEach(carte => {
-                // 1. GESTION DU BADGE ROUGE "Ajouté Récemment" via data-date-ajout
+                // 1. Gestion du badge rouge "Ajouté Récemment" via data-date-ajout
                 const dateAjoutStr = carte.getAttribute("data-date-ajout");
                 const badgeRouge = carte.querySelector(".recent-tag");
 
@@ -1067,7 +1059,6 @@
                     const diffAjoutTemps = aujourdhui.getTime() - dateAjout.getTime();
                     const diffAjoutJours = Math.floor(diffAjoutTemps / (1000 * 60 * 60 * 24));
 
-                    // Si l'ajout a moins de 10 jours (ou égal à 10)
                     if (diffAjoutJours >= 0 && diffAjoutJours <= 10) {
                         if (badgeRouge) badgeRouge.style.display = "block";
                     } else {
@@ -1075,7 +1066,7 @@
                     }
                 }
 
-                // 2. GESTION DU BADGE VERT ET EFFACEMENT AUTOMATIQUE GLOBAL VIA DATE DE SORTIE
+                // 2. Gestion du badge vert et disparition automatique après 10 jours
                 const dateSortieStr = carte.getAttribute("data-date-sortie");
                 if (!dateSortieStr) return;
 
@@ -1087,10 +1078,8 @@
 
                 if (differenceJours >= 0) {
                     if (differenceJours > 10) {
-                        // EFFACEMENT AUTOMATIQUE APRÈS 10 JOURS DE SORTIE
                         carte.remove();
                     } else {
-                        // AFFICHAGE AUTOMATIQUE DU BOUTON VERT "EST SORTI(E) !"
                         const badgeVert = carte.querySelector(".now-playing-badge");
                         const texteDate = carte.querySelector(".movie-date");
 
@@ -1100,7 +1089,7 @@
                 }
             });
 
-            // Gestion de l'affichage du placeholder "Non disponible" pour les animes
+            // Placeholder Animes
             const animeContainer = document.getElementById("anime-container");
             const animePlaceholder = document.getElementById("anime-placeholder");
             if (animeContainer && animePlaceholder) {
