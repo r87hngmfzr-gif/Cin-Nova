@@ -61,23 +61,30 @@
             margin: 0 auto;
         }
 
-        /* Conteneur Central : Logo à la place du texte + Icône News */
+        /* Conteneur Central : Titre Texte + Icône News */
         .title-container {
             display: flex;
             align-items: center;
             gap: 15px;
         }
 
-        /* Style pour le logo dans l'en-tête */
-        .header-logo {
-            height: 55px; /* Ajuste la hauteur de ton logo ici */
-            width: auto;
+        /* Le grand titre en texte comme avant */
+        .main-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #ff758c, #ff7eb3, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0;
             cursor: pointer;
-            transition: transform 0.2s ease;
+            letter-spacing: 1px;
+            transition: transform 0.2s;
+            user-select: none;
+            text-shadow: 0 0 30px rgba(167, 139, 250, 0.15);
         }
 
-        .header-logo:hover {
-            transform: scale(1.05);
+        .main-title:hover {
+            transform: scale(1.02);
         }
 
         /* Bouton Icône Journal / News */
@@ -596,7 +603,7 @@
         </div>
         
         <div class="title-container">
-            <img src="ton-logo.png.png" alt="Logo Ciné Nova" class="header-logo" onclick="showPage('home-page')">
+            <h1 class="main-title" onclick="showPage('home-page')">Ciné Nova</h1>
             <button class="news-btn" onclick="showPage('news-page')">📰</button>
         </div>
 
