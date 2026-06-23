@@ -424,6 +424,22 @@
             display: none; 
         }
 
+        /* Étiquette Rouge "Ajouté Récemment" */
+        .recent-tag {
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid #ef4444;
+            color: #ef4444;
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            width: fit-content;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            display: none; /* Géré en JavaScript */
+        }
+
         /* Style pour l'emplacement vide Arrive bientôt / Indisponible */
         .coming-soon-box {
             background: rgba(255, 255, 255, 0.01);
@@ -621,6 +637,7 @@
                 
                 <article class="movie-card large" data-date-sortie="2026-06-24" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
+                        <div class="recent-tag">🆕 Ajouter Récemment</div>
                         <div class="now-playing-badge">🟢 EST SORTI(E) !</div>
                         <span class="movie-type">🎬 Film Long-Métrage</span>
                         <h2 class="movie-title">Des Minions et des monstres</h2>
@@ -639,6 +656,7 @@
 
                 <article class="movie-card large" data-date-sortie="2026-06-15" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
+                        <div class="recent-tag">🆕 Ajouter Récemment</div>
                         <div class="now-playing-badge">🟢 EST SORTI(E) !</div>
                         <span class="movie-type">🎬 Film • Pixar</span>
                         <h2 class="movie-title">Toy Story 5</h2>
@@ -664,6 +682,7 @@
 
                 <article class="movie-card small" data-date-sortie="2026-07-08" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
+                        <div class="recent-tag">🆕 Ajouter Récemment</div>
                         <div class="now-playing-badge">🟢 EST SORTI(E) !</div>
                         <span class="movie-type">🎬 Film • Disney Live-Action</span>
                         <h2 class="movie-title">Vaiana (Live-Action)</h2>
@@ -683,6 +702,7 @@
 
                 <article class="movie-card small" data-date-sortie="2026-07-29" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
+                        <div class="recent-tag">🆕 Ajouter Récemment</div>
                         <div class="now-playing-badge">🟢 EST SORTI(E) !</div>
                         <span class="movie-type">🎬 Film • Marvel Studios / Sony</span>
                         <h2 class="movie-title">Spider-Man: Brand New Day</h2>
@@ -702,6 +722,7 @@
 
                 <article class="movie-card small" data-date-sortie="2026-09-16" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
+                        <div class="recent-tag">🆕 Ajouter Récemment</div>
                         <div class="now-playing-badge">🟢 EST SORTI(E) !</div>
                         <span class="movie-type">🎬 Film • Columbia / Constantin</span>
                         <h2 class="movie-title">Resident Evil</h2>
@@ -721,6 +742,7 @@
 
                 <article class="movie-card small" data-date-sortie="2026-12-18" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
+                        <div class="recent-tag">🆕 Ajouter Récemment</div>
                         <div class="now-playing-badge">🟢 EST SORTI(E) !</div>
                         <span class="movie-type">🎬 Film • Marvel Studios</span>
                         <h2 class="movie-title">Avengers: Doomsday</h2>
@@ -740,6 +762,7 @@
                 
                 <article class="movie-card small" data-date-sortie="2026-06-24" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
+                        <div class="recent-tag">🆕 Ajouter Récemment</div>
                         <div class="now-playing-badge">🟢 EST SORTI(E) !</div>
                         <span class="movie-type">🎬 Film</span>
                         <h2 class="movie-title">Les caprices de l'enfant roi</h2>
@@ -758,6 +781,7 @@
 
                 <article class="movie-card small" data-date-sortie="2026-06-26" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
+                        <div class="recent-tag">🆕 Ajouter Récemment</div>
                         <div class="now-playing-badge">🟢 EST SORTI(E) !</div>
                         <span class="movie-type">🎬 Film</span>
                         <h2 class="movie-title">La bataille de Gaulle - P.2</h2>
@@ -776,6 +800,7 @@
 
                 <article class="movie-card small" data-date-sortie="2026-07-15" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
+                        <div class="recent-tag">🆕 Ajouter Récemment</div>
                         <div class="now-playing-badge">🟢 EST SORTI(E) !</div>
                         <span class="movie-type">🎬 Film Long-Métrage</span>
                         <h2 class="movie-title">L'Odyssée</h2>
@@ -794,6 +819,7 @@
 
                 <article class="movie-card small" data-date-sortie="2026-06-17" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
+                        <div class="recent-tag">🆕 Ajouter Récemment</div>
                         <div class="now-playing-badge">🟢 EST SORTI(E) !</div>
                         <span class="movie-type">🎬 Film • A24</span>
                         <h2 class="movie-title">Backrooms</h2>
@@ -819,6 +845,7 @@
 
                 <article class="movie-card small" data-date-sortie="2026-06-25" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
+                        <div class="recent-tag">🆕 Ajouter Récemment</div>
                         <div class="now-playing-badge">🟢 EST SORTI(E) !</div>
                         <span class="movie-type series-type">📺 Série • Saison 2</span>
                         <h2 class="movie-title">Avatar: The Last Airbender</h2>
@@ -838,6 +865,7 @@
 
                 <article class="movie-card small" data-date-sortie="2026-06-26" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
+                        <div class="recent-tag">🆕 Ajouter Récemment</div>
                         <div class="now-playing-badge">🟢 EST SORTI(E) !</div>
                         <span class="movie-type series-type">📺 Série • Saison 5</span>
                         <h2 class="movie-title">The Bear</h2>
@@ -856,6 +884,7 @@
 
                 <article class="movie-card small" data-date-sortie="2026-10-23" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
+                        <div class="recent-tag">🆕 Ajouter Récemment</div>
                         <div class="now-playing-badge">🟢 EST SORTI(E) !</div>
                         <span class="movie-type series-type">📺 Série • Saison 4</span>
                         <h2 class="movie-title">Lupin</h2>
@@ -875,6 +904,7 @@
 
                 <article class="movie-card small" data-date-sortie="2026-12-25" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
+                        <div class="recent-tag">🆕 Ajouter Récemment</div>
                         <div class="now-playing-badge">🟢 EST SORTI(E) !</div>
                         <span class="movie-type series-type">📺 Série • Saison 1</span>
                         <h2 class="movie-title">Harry Potter</h2>
@@ -1015,7 +1045,15 @@
                 const differenceTemps = aujourdhui.getTime() - dateSortie.getTime();
                 const differenceJours = Math.floor(differenceTemps / (1000 * 60 * 60 * 24));
 
-                // Si la date est aujourd'hui ou est passée
+                // GESTION DU BADGE ROUGE "Ajouter Récemment" (Actif si moins de 10 jours depuis la sortie)
+                const badgeRouge = carte.querySelector(".recent-tag");
+                if (differenceJours >= 0 && differenceJours <= 10) {
+                    if (badgeRouge) badgeRouge.style.display = "block";
+                } else {
+                    if (badgeRouge) badgeRouge.style.display = "none";
+                }
+
+                // GESTION DU BADGE VERT ET EFFACEMENT AUTOMATIQUE GLOBAL
                 if (differenceJours >= 0) {
                     if (differenceJours > 10) {
                         // EFFACEMENT AUTOMATIQUE APRÈS 10 JOURS
