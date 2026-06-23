@@ -448,7 +448,7 @@
             gap: 25px;
         }
 
-        /* Bloc épinglé pour les Réseaux */
+        /* Blocs épinglés pour les Actus / News */
         .pinned-networks-box {
             background: linear-gradient(135deg, rgba(167, 139, 250, 0.1), rgba(255, 117, 140, 0.05));
             border: 2px dashed rgba(167, 139, 250, 0.4);
@@ -456,6 +456,12 @@
             border-radius: 20px;
             position: relative;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Style spécifique pour le bloc Alerte */
+        .pinned-networks-box.alert-style {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.12), rgba(255, 117, 140, 0.05));
+            border-color: rgba(239, 68, 68, 0.4);
         }
 
         .pinned-tag {
@@ -473,12 +479,24 @@
             box-shadow: 0 4px 10px rgba(167, 139, 250, 0.3);
         }
 
+        .pinned-tag.alert-tag {
+            background: linear-gradient(to right, #ef4444, #ff758c);
+            box-shadow: 0 4px 10px rgba(239, 68, 68, 0.3);
+        }
+
         .networks-title {
             font-size: 1.3rem;
             color: #ffffff;
             margin: 5px 0 15px 0;
             font-weight: 700;
             letter-spacing: 0.5px;
+        }
+
+        .alert-message-text {
+            color: #e2e8f0;
+            font-size: 1.05rem;
+            line-height: 1.5;
+            margin: 5px 0;
         }
 
         .network-item {
@@ -875,6 +893,13 @@
         <h2 class="section-title">ACTUS / NEWS</h2>
         
         <div class="news-container">
+            
+            <div class="pinned-networks-box alert-style">
+                <span class="pinned-tag alert-tag">📌 Épinglé</span>
+                <h3 class="networks-title">Alerte</h3>
+                <p class="alert-message-text"><b>Si vous avez le moindre problème/bugs, alors n'hésité pas à m'alerter en MP sur TikTok</b></p>
+            </div>
+
             <div class="pinned-networks-box">
                 <span class="pinned-tag">📌 Épinglé</span>
                 <h3 class="networks-title">NOS RESEAUX</h3>
@@ -980,7 +1005,6 @@
             });
 
             // Gestion de l'affichage du placeholder "Non disponible" pour les animes
-            // S'il ne reste aucune carte dans la grille des animes (ou si elle est vide), on affiche l'encadré
             const animeContainer = document.getElementById("anime-container");
             const animePlaceholder = document.getElementById("anime-placeholder");
             if (animeContainer && animePlaceholder) {
