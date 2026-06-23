@@ -217,7 +217,7 @@
             color: #ffffff;
             position: relative;
             display: inline-block;
-            scroll-margin-top: 30px; /* Évite que l'en-tête colle trop au titre lors du défilement */
+            scroll-margin-top: 30px; /* Évite de coller à la barre au défilement */
         }
 
         .section-title::after {
@@ -524,51 +524,8 @@
         
         <div id="no-results" class="no-results-msg">Aucun contenu ne correspond à votre recherche.</div>
 
-        <div class="section-block" id="sect-affiche">
-            <h2 class="section-title" id="title-calendar" style="margin-top: 20px;">Films à l'affiche</h2>
-            <div class="movies-grid">
-                
-                <article class="movie-card large" data-date-sortie="2026-06-24" onclick="toggleSynopsis(this)">
-                    <div class="movie-info">
-                        <div class="now-playing-badge">🟢 AU CINÉMA !</div>
-                        <span class="movie-type">🎬 Film Long-Métrage</span>
-                        <h2 class="movie-title">Des Minions et des monstres</h2>
-                        <div class="movie-tags">
-                            <span class="tag-genre">Animation</span>
-                            <span class="tag-genre">Comédie</span>
-                            <span class="tag-classification all-audiences">Tout Public</span>
-                        </div>
-                        <div class="movie-date">📅 Sortie : 24 Juin 2026</div>
-                        <div class="movie-synopsis">
-                            Désireux de prouver leur courage, les Minions s'allient par accident à des créatures légendaires farfelues. Ensemble, they devront faire face à une menace inattendue dans une aventure hilarante pleine de gaffes et de rebondissements.
-                        </div>
-                        <span class="click-hint">Cliquez pour voir le résumé</span>
-                    </div>
-                </article>
-
-                <article class="movie-card large" data-date-sortie="2026-06-15" onclick="toggleSynopsis(this)">
-                    <div class="movie-info">
-                        <div class="now-playing-badge">🟢 AU CINÉMA !</div>
-                        <span class="movie-type">🎬 Film • Pixar</span>
-                        <h2 class="movie-title">Toy Story 5</h2>
-                        <div class="movie-tags">
-                            <span class="tag-provider">Disney / Pixar</span>
-                            <span class="tag-genre">Animation</span>
-                            <span class="tag-genre">Aventure</span>
-                            <span class="tag-classification all-audiences">Tout Public</span>
-                        </div>
-                        <div class="movie-date">📅 Sortie : 15 Juin 2026</div>
-                        <div class="movie-synopsis">
-                            Woody, Buzz et toute la bande sont de retour pour faire face à un nouvel adversaire inattendu : la technologie et l'obsession des enfants modernes pour les écrans. Une aventure drôle et touchante sur l'évolution des jouets dans le monde d'aujourd'hui.
-                        </div>
-                        <span class="click-hint">Cliquez pour voir le résumé</span>
-                    </div>
-                </article>
-            </div>
-        </div>
-
         <div class="section-block" id="sect-films">
-            <h2 class="section-title" id="title-films">Films</h2>
+            <h2 class="section-title" id="title-films" style="margin-top: 20px;">Films</h2>
             <div class="small-movies-grid">
 
                 <article class="movie-card small" data-date-sortie="2026-07-08" onclick="toggleSynopsis(this)">
@@ -805,6 +762,50 @@
                 Non disponible pour le moment 🚫
             </div>
         </div>
+
+        <div class="section-block" id="sect-affiche">
+            <h2 class="section-title" id="title-calendar">Films à l'affiche</h2>
+            <div class="movies-grid">
+                
+                <article class="movie-card large" data-date-sortie="2026-06-24" onclick="toggleSynopsis(this)">
+                    <div class="movie-info">
+                        <div class="now-playing-badge">🟢 AU CINÉMA !</div>
+                        <span class="movie-type">🎬 Film Long-Métrage</span>
+                        <h2 class="movie-title">Des Minions et des monstres</h2>
+                        <div class="movie-tags">
+                            <span class="tag-genre">Animation</span>
+                            <span class="tag-genre">Comédie</span>
+                            <span class="tag-classification all-audiences">Tout Public</span>
+                        </div>
+                        <div class="movie-date">📅 Sortie : 24 Juin 2026</div>
+                        <div class="movie-synopsis">
+                            Désireux de prouver leur courage, les Minions s'allient par accident à des créatures légendaires farfelues. Ensemble, they devront faire face à une menace inattendue dans une aventure hilarante pleine de gaffes et de rebondissements.
+                        </div>
+                        <span class="click-hint">Cliquez pour voir le résumé</span>
+                    </div>
+                </article>
+
+                <article class="movie-card large" data-date-sortie="2026-06-15" onclick="toggleSynopsis(this)">
+                    <div class="movie-info">
+                        <div class="now-playing-badge">🟢 AU CINÉMA !</div>
+                        <span class="movie-type">🎬 Film • Pixar</span>
+                        <h2 class="movie-title">Toy Story 5</h2>
+                        <div class="movie-tags">
+                            <span class="tag-provider">Disney / Pixar</span>
+                            <span class="tag-genre">Animation</span>
+                            <span class="tag-genre">Aventure</span>
+                            <span class="tag-classification all-audiences">Tout Public</span>
+                        </div>
+                        <div class="movie-date">📅 Sortie : 15 Juin 2026</div>
+                        <div class="movie-synopsis">
+                            Woody, Buzz et toute la bande sont de retour pour faire face à un nouvel adversaire inattendu : la technologie et l'obsession des enfants modernes pour les écrans. Une aventure drôle et touchante sur l'évolution des jouets dans le monde d'aujourd'hui.
+                        </div>
+                        <span class="click-hint">Cliquez pour voir le résumé</span>
+                    </div>
+                </article>
+            </div>
+        </div>
+
     </main>
 
     <main class="page-view" id="news-page">
@@ -837,7 +838,7 @@
             </div>
 
             <div class="news-box">
-                </div>
+            </div>
         </div>
     </main>
 
@@ -897,9 +898,7 @@
 
         // Fonction pour défiler automatiquement vers un élément spécifique
         function scrollToSection(elementId) {
-            // Assure que l'utilisateur est bien redirigé sur l'accueil si ce n'était pas le cas
             showPage('home-page');
-            
             const element = document.getElementById(elementId);
             if (element) {
                 element.scrollIntoView({ behavior: 'smooth' });
@@ -916,7 +915,6 @@
                 if (tabsNav) tabsNav.style.display = 'flex';
                 performSearch();
             } else {
-                // Masque les onglets si on quitte l'accueil (ex: page actualités)
                 if (tabsNav) tabsNav.style.display = 'none';
             }
         }
