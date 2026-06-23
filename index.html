@@ -142,8 +142,9 @@
         .tabs-navigation {
             display: flex;
             justify-content: center;
+            align-items: center;
             gap: 12px;
-            max-width: 750px;
+            max-width: 800px;
             margin: 35px auto 15px auto;
             padding: 6px;
             background: rgba(255, 255, 255, 0.02);
@@ -175,6 +176,28 @@
             text-shadow: 0 0 8px rgba(167, 139, 250, 0.6);
             transform: translateY(-2px);
             box-shadow: 0 4px 15px rgba(167, 139, 250, 0.1);
+        }
+
+        /* Bouton Refresh tout à droite des onglets */
+        .refresh-tab-btn {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #a78bfa;
+            padding: 10px;
+            border-radius: 14px;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .refresh-tab-btn:hover {
+            background: rgba(167, 139, 250, 0.15);
+            border-color: rgba(167, 139, 250, 0.4);
+            color: #ffffff;
+            transform: rotate(45deg);
         }
 
         /* Bouton Retour en haut flottant */
@@ -348,7 +371,7 @@
             color: #94a3b8;
             padding: 3px 12px;
             border-radius: 20px;
-            font-size: 0.7rem;
+            font-size: 0.7 seam;
             text-transform: uppercase;
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
@@ -546,6 +569,7 @@
             .search-container { width: 100% !important; }
             .tabs-navigation { flex-wrap: wrap; background: transparent; border: none; backdrop-filter: none; }
             .tab-btn { min-width: 100px; background: rgba(255, 255, 255, 0.02); border-color: rgba(255, 255, 255, 0.05); }
+            .refresh-tab-btn { width: 100%; margin-top: 5px; }
         }
 
         @media (max-width: 768px) {
@@ -582,6 +606,7 @@
         <button class="tab-btn" onclick="scrollToSection('title-series')">Séries</button>
         <button class="tab-btn" onclick="scrollToSection('title-anime')">Animes</button>
         <button class="tab-btn" onclick="scrollToSection('title-calendar')">Calendrier</button>
+        <button class="refresh-tab-btn" onclick="window.location.reload();" title="Rafraîchir la page">🔄</button>
     </nav>
 
     <main class="page-view active" id="home-page">
