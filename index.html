@@ -372,7 +372,7 @@
             gap: 25px;
         }
 
-        /* Bloc épinglé pour les Réseaux */
+        /* Bloc épinglé pour les Réseaux et les Signalements */
         .pinned-networks-box {
             background: linear-gradient(135deg, rgba(167, 139, 250, 0.1), rgba(255, 117, 140, 0.05));
             border: 2px dashed rgba(167, 139, 250, 0.4);
@@ -395,6 +395,22 @@
             letter-spacing: 1px;
             text-transform: uppercase;
             box-shadow: 0 4px 10px rgba(167, 139, 250, 0.3);
+        }
+
+        /* Style pour les messages d'avertissement/bugs importants */
+        .bug-report-alert {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 12px;
+            padding: 12px 16px;
+            margin-top: 15px;
+            margin-bottom: 20px;
+            color: #f87171;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
         }
 
         .networks-title {
@@ -773,6 +789,12 @@
         <div class="news-container">
             <div class="pinned-networks-box">
                 <span class="pinned-tag">📌 Épinglé</span>
+                
+                <div class="bug-report-alert">
+                    <span>⚙️</span>
+                    <span>Si vous rencontrez le moindre problème/bugs, veuillez me contacter en MP (TikTok)</span>
+                </div>
+
                 <h3 class="networks-title">NOS RESEAUX</h3>
                 
                 <div class="network-item">
@@ -795,7 +817,7 @@
             </div>
 
             <div class="news-box">
-                </div>
+            </div>
         </div>
     </main>
 
