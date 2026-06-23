@@ -295,7 +295,7 @@
             margin-bottom: 6px;
             display: block;
             font-weight: 600;
-            padding-right: 30px; /* Évite la superposition avec l'étoile */
+            padding-right: 30px; 
         }
 
         .movie-type.series-type {
@@ -371,7 +371,7 @@
             width: fit-content;
             margin-bottom: 12px;
             text-transform: uppercase;
-            display: none; /* Géré dynamiquement par JS */
+            display: none; 
         }
 
         /* Style pour l'emplacement vide Arrive bientôt */
@@ -481,21 +481,6 @@
             padding: 2px 8px;
             border-radius: 6px;
             border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .network-status {
-            font-style: italic;
-            color: #64748b;
-            font-size: 0.9rem;
-        }
-
-        .news-box {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 30px;
-            border-radius: 20px;
-            color: #94a3b8;
-            min-height: 100px;
         }
 
         @media (max-width: 900px) {
@@ -620,7 +605,7 @@
                         </div>
                         <div class="movie-date">📅 Sortie : 29 Juillet 2026</div>
                         <div class="movie-synopsis">
-                            Quatre ans se sont écoulés. Peter Parker, désormais jeune adulte, vit totalement isolé et s'est effacé de la mémoire de ses proches. Une nouvelle ére commence pour le tisseur de toile qui doit réapprendre à protéger Manhattan tout en gérant sa nouvelle réalité.
+                            Quatre ans se sont écoulés. Peter Parker, désormais jeune adulte, vit totalement isolé et s'est effacé de la mémoire de ses proches. Une nouvelle ère commence pour le tisseur de toile qui doit réapprendre à protéger Manhattan tout en gérant sa nouvelle réalité.
                         </div>
                         <span class="click-hint">Cliquez pour voir le résumé</span>
                     </div>
@@ -717,6 +702,13 @@
                 Non disponible pour le moment 🚫
             </div>
         </div>
+
+        <div class="section-block" id="sect-calendrier">
+            <h2 class="section-title">CALENDRIER</h2>
+            <div class="coming-soon-box">
+                Non disponible pour le moment 🚫
+            </div>
+        </div>
     </main>
 
     <main class="page-view" id="fav-page">
@@ -794,17 +786,13 @@
 
             let hasFavs = false;
 
-            // On cherche toutes les cartes originales pour copier celles en favoris
             favorites.forEach(favId => {
                 const originalCard = document.querySelector(`.movie-card[data-id="${favId}"]`);
                 if (originalCard) {
                     hasFavs = true;
                     const clonedCard = originalCard.cloneNode(true);
-                    
-                    // S'assurer que la classe active (résumé ouvert) n'est pas copiée par défaut
                     clonedCard.classList.remove('active');
                     
-                    // Rétablir les événements click sur le clone
                     clonedCard.setAttribute('onclick', 'toggleSynopsis(this, event)');
                     const cloneFavIcon = clonedCard.querySelector('.card-fav-icon');
                     if (cloneFavIcon) {
@@ -922,6 +910,11 @@
                 if (sect.id === 'sect-anime') {
                     sect.style.display = (query !== "" && ! "animes".includes(query)) ? "none" : "block";
                     if (query !== "" && "animes".includes(query)) totalVisible++;
+                    return;
+                }
+                if (sect.id === 'sect-calendrier') {
+                    sect.style.display = (query !== "" && ! "calendrier".includes(query)) ? "none" : "block";
+                    if (query !== "" && "calendrier".includes(query)) totalVisible++;
                     return;
                 }
                 const visibleInSect = sect.querySelectorAll('.movie-card[style="display: flex;"]').length;
