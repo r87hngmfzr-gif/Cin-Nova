@@ -12,6 +12,7 @@
             background-color: #0d0d11; 
             color: #e2e8f0;
             font-family: 'Poppins', 'Segoe UI', sans-serif;
+            scroll-behavior: smooth; /* Permet le défilement fluide */
         }
 
         /* Barre d'en-tête principale */
@@ -137,6 +138,37 @@
             user-select: none;
         }
 
+        /* Barre d'onglets de navigation */
+        .tabs-navigation {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            max-width: 600px;
+            margin: 30px auto 10px auto;
+            padding: 0 20px;
+        }
+
+        .tab-btn {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: #94a3b8;
+            padding: 10px 24px;
+            border-radius: 14px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            flex: 1;
+            text-align: center;
+        }
+
+        .tab-btn:hover {
+            background: rgba(167, 139, 250, 0.08);
+            border-color: rgba(167, 139, 250, 0.3);
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
         /* Message si aucun résultat */
         .no-results-msg {
             display: none;
@@ -151,7 +183,7 @@
         .page-view {
             display: none;
             max-width: 1100px;
-            margin: 50px auto;
+            margin: 20px auto 50px auto;
             padding: 0 20px;
         }
 
@@ -185,6 +217,7 @@
             color: #ffffff;
             position: relative;
             display: inline-block;
+            scroll-margin-top: 30px; /* Évite que l'en-tête colle trop au titre lors du défilement */
         }
 
         .section-title::after {
@@ -224,9 +257,6 @@
             cursor: pointer;
             position: relative;
             overflow: hidden;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
         }
 
         .movie-card.large { min-height: 280px; }
@@ -375,16 +405,7 @@
             gap: 25px;
         }
 
-        /* Blocs épinglés */
-        .pinned-alert-box {
-            background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(255, 117, 140, 0.05));
-            border: 2px dashed rgba(239, 68, 68, 0.5);
-            padding: 25px;
-            border-radius: 20px;
-            position: relative;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-        }
-
+        /* Bloc épinglé pour les Réseaux */
         .pinned-networks-box {
             background: linear-gradient(135deg, rgba(167, 139, 250, 0.1), rgba(255, 117, 140, 0.05));
             border: 2px dashed rgba(167, 139, 250, 0.4);
@@ -409,25 +430,12 @@
             box-shadow: 0 4px 10px rgba(167, 139, 250, 0.3);
         }
 
-        .pinned-tag.alert-tag {
-            background: linear-gradient(to right, #ef4444, #ff758c);
-            box-shadow: 0 4px 10px rgba(239, 68, 68, 0.3);
-        }
-
         .networks-title {
             font-size: 1.3rem;
             color: #ffffff;
             margin: 5px 0 15px 0;
             font-weight: 700;
             letter-spacing: 0.5px;
-        }
-
-        .alert-text {
-            color: #e2e8f0;
-            font-size: 1.1rem;
-            line-height: 1.5;
-            margin: 5px 0 0 0;
-            font-weight: 500;
         }
 
         .network-item {
@@ -475,6 +483,8 @@
         @media (max-width: 900px) {
             .header-container { flex-direction: column; gap: 15px; text-align: center; }
             .search-container { width: 100% !important; }
+            .tabs-navigation { flex-wrap: wrap; }
+            .tab-btn { min-width: 110px; }
         }
 
         @media (max-width: 768px) {
@@ -503,15 +513,22 @@
         </div>
     </header>
 
+    <nav class="tabs-navigation" id="main-tabs">
+        <button class="tab-btn" onclick="scrollToSection('title-films')">Films</button>
+        <button class="tab-btn" onclick="scrollToSection('title-series')">Séries</button>
+        <button class="tab-btn" onclick="scrollToSection('title-anime')">Animes</button>
+        <button class="tab-btn" onclick="scrollToSection('title-calendar')">Calendrier</button>
+    </nav>
+
     <main class="page-view active" id="home-page">
         
         <div id="no-results" class="no-results-msg">Aucun contenu ne correspond à votre recherche.</div>
 
         <div class="section-block" id="sect-affiche">
-            <h2 class="section-title" style="margin-top: 20px;">Films à l'affiche</h2>
+            <h2 class="section-title" id="title-calendar" style="margin-top: 20px;">Films à l'affiche</h2>
             <div class="movies-grid">
                 
-                <article class="movie-card large" id="card-minions" data-date-sortie="2026-06-24" onclick="toggleSynopsis(this)">
+                <article class="movie-card large" data-date-sortie="2026-06-24" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
                         <div class="now-playing-badge">🟢 AU CINÉMA !</div>
                         <span class="movie-type">🎬 Film Long-Métrage</span>
@@ -529,7 +546,7 @@
                     </div>
                 </article>
 
-                <article class="movie-card large" id="card-toystory" data-date-sortie="2026-06-15" onclick="toggleSynopsis(this)">
+                <article class="movie-card large" data-date-sortie="2026-06-15" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
                         <div class="now-playing-badge">🟢 AU CINÉMA !</div>
                         <span class="movie-type">🎬 Film • Pixar</span>
@@ -551,7 +568,7 @@
         </div>
 
         <div class="section-block" id="sect-films">
-            <h2 class="section-title">Films</h2>
+            <h2 class="section-title" id="title-films">Films</h2>
             <div class="small-movies-grid">
 
                 <article class="movie-card small" data-date-sortie="2026-07-08" onclick="toggleSynopsis(this)">
@@ -660,7 +677,7 @@
                         </div>
                         <div class="movie-date">📅 Sortie : 26 Juin 2026</div>
                         <div class="movie-synopsis">
-                            Le second volet de cette fresque historique majeure centré sur les moments décisifs de la Résistance. Un vibrant hommage au courage, aux choix stratégiques difficiles et aux mots qui ont façonné le destiny d'une nation libre.
+                            Le second volet de cette fresque historique majeure centré sur les moments décisifs de la Résistance. Un vibrant hommage au courage, aux choix stratégiques difficiles et aux mots qui ont façonné le destin d'une nation libre.
                         </div>
                         <span class="click-hint">Cliquez pour voir le résumé</span>
                     </div>
@@ -706,7 +723,7 @@
         </div>
 
         <div class="section-block" id="sect-series">
-            <h2 class="section-title">Séries</h2>
+            <h2 class="section-title" id="title-series">Séries</h2>
             <div class="series-grid">
 
                 <article class="movie-card small" onclick="toggleSynopsis(this)">
@@ -756,7 +773,7 @@
                         </div>
                         <div class="movie-date">📅 Sortie : 23 Octobre 2026</div>
                         <div class="movie-synopsis">
-                            Assane Diop revient pour de nouveaux casses ingénieux et insaisissables. Traqué de toutes parts, le gentleman cambrioleur devra faire preuve d'une audace sans précédent pour protéger ses proches et clore de vieux comptes.
+                            Assane Diop revient pour de nouveaux casses ingénieux et insaisissables. Traqué de toutes parts, le gentleman cambrioleur devra faire preuve d'une audace sans precedent pour protéger ses proches et clore de vieux comptes.
                         </div>
                         <span class="click-hint">Cliquez pour voir le résumé</span>
                     </div>
@@ -783,7 +800,7 @@
         </div>
 
         <div class="section-block" id="sect-anime">
-            <h2 class="section-title">ANIMES</h2>
+            <h2 class="section-title" id="title-anime">ANIMES</h2>
             <div class="coming-soon-box">
                 Non disponible pour le moment 🚫
             </div>
@@ -796,12 +813,6 @@
         <h2 class="section-title">ACTUS / NEWS</h2>
         
         <div class="news-container">
-            <div class="pinned-alert-box">
-                <span class="pinned-tag alert-tag">📌 Épinglé</span>
-                <h3 class="networks-title">ALERTE :</h3>
-                <p class="alert-text">Si vous avez le moindre problème/bugs, prévenez moi en MP sur TikTok</p>
-            </div>
-
             <div class="pinned-networks-box">
                 <span class="pinned-tag">📌 Épinglé</span>
                 <h3 class="networks-title">NOS RESEAUX</h3>
@@ -826,12 +837,12 @@
             </div>
 
             <div class="news-box">
-            </div>
+                </div>
         </div>
     </main>
 
     <script>
-        // --- TIMER DE MISE À ZONE (Cible : 20 Juillet 2026 à minuit) ---
+        // --- TIMER DE MISE À JOUR (Cible : 20 Juillet 2026 à minuit) ---
         const dateCible = new Date("Jul 20, 2026 00:00:00").getTime();
 
         const x = setInterval(function() {
@@ -853,22 +864,8 @@
         }, 1000);
 
 
-        // --- GESTION AUTOMATIQUE DES DATES ET CHARGEMENT DES PHOTOS OFFICIELLES ---
+        // --- GESTION AUTOMATIQUE DES DATES DE CINÉMA ---
         document.addEventListener("DOMContentLoaded", function() {
-            // Configuration des photos officielles pour uniquement les grands cadres
-            const imgMinions = "https://images.unsplash.com/photo-1608889174639-41419f6b1d4d?q=80&w=1000&auto=format&fit=crop"; // Illustration Minions-vibe de haute qualité
-            const imgToyStory = "https://images.unsplash.com/photo-1594787318286-3d835c1d207f?q=80&w=1000&auto=format&fit=crop"; // Illustration Jouets/Toy Story de haute qualité
-
-            const cMinions = document.getElementById("card-minions");
-            const cToyStory = document.getElementById("card-toystory");
-
-            if(cMinions) {
-                cMinions.style.backgroundImage = "linear-gradient(135deg, rgba(19, 19, 26, 0.85), rgba(26, 26, 38, 0.92)), url('" + imgMinions + "')";
-            }
-            if(cToyStory) {
-                cToyStory.style.backgroundImage = "linear-gradient(135deg, rgba(19, 19, 26, 0.85), rgba(26, 26, 38, 0.92)), url('" + imgToyStory + "')";
-            }
-
             const aujourdhui = new Date();
             aujourdhui.setHours(0, 0, 0, 0);
 
@@ -898,13 +895,29 @@
             });
         });
 
+        // Fonction pour défiler automatiquement vers un élément spécifique
+        function scrollToSection(elementId) {
+            // Assure que l'utilisateur est bien redirigé sur l'accueil si ce n'était pas le cas
+            showPage('home-page');
+            
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
         // Navigation entre les pages
         function showPage(pageId) {
             document.querySelectorAll('.page-view').forEach(view => view.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
             
+            const tabsNav = document.getElementById('main-tabs');
             if (pageId === 'home-page') {
+                if (tabsNav) tabsNav.style.display = 'flex';
                 performSearch();
+            } else {
+                // Masque les onglets si on quitte l'accueil (ex: page actualités)
+                if (tabsNav) tabsNav.style.display = 'none';
             }
         }
 
