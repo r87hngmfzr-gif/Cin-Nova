@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ciné Nova</title>
+    
+    <link rel="icon" type="image/png" href="ton-logo.png.png">
+
     <style>
         /* Styles globaux & Ambiance Aesthetic */
         body {
@@ -58,23 +61,23 @@
             margin: 0 auto;
         }
 
-        /* Conteneur Central : Titre + Icône News */
+        /* Conteneur Central : Logo à la place du texte + Icône News */
         .title-container {
             display: flex;
             align-items: center;
             gap: 15px;
         }
 
-        .main-title {
-            font-size: 2.5rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            margin: 0;
-            background: linear-gradient(to right, #ff7eb3, #ff758c, #a78bfa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        /* Style pour le logo dans l'en-tête */
+        .header-logo {
+            height: 55px; /* Ajuste la hauteur de ton logo ici */
+            width: auto;
             cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .header-logo:hover {
+            transform: scale(1.05);
         }
 
         /* Bouton Icône Journal / News */
@@ -593,7 +596,7 @@
         </div>
         
         <div class="title-container">
-            <h1 class="main-title" onclick="showPage('home-page')">Ciné Nova</h1>
+            <img src="ton-logo.png.png" alt="Logo Ciné Nova" class="header-logo" onclick="showPage('home-page')">
             <button class="news-btn" onclick="showPage('news-page')">📰</button>
         </div>
 
