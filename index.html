@@ -483,6 +483,21 @@
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
+        .network-status {
+            font-style: italic;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .news-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 20px;
+            color: #94a3b8;
+            min-height: 100px;
+        }
+
         @media (max-width: 900px) {
             .header-container { flex-direction: column; gap: 15px; text-align: center; }
             .right-header-block { width: 100%; justify-content: center; }
@@ -650,6 +665,82 @@
                         <span class="click-hint">Cliquez pour voir le résumé</span>
                     </div>
                 </article>
+                
+                <article class="movie-card small" data-id="caprices-enfant-roi" data-date-sortie="2026-06-24" onclick="toggleSynopsis(this, event)">
+                    <div class="movie-info">
+                        <span class="card-fav-icon" onclick="toggleFavorite('caprices-enfant-roi', event)">⭐</span>
+                        <div class="now-playing-badge">🟢 AU CINÉMA !</div>
+                        <span class="movie-type">🎬 Film</span>
+                        <h2 class="movie-title">Les caprices de l'enfant roi</h2>
+                        <div class="movie-tags">
+                            <span class="tag-genre">Drame</span>
+                            <span class="tag-genre">Historique</span>
+                            <span class="tag-classification all-audiences">Tout Public</span>
+                        </div>
+                        <div class="movie-date">📅 Sortie : 24 Juin 2026</div>
+                        <div class="movie-synopsis">
+                            Dans un royaume lointain et fragile, les caprices d'un jeune héritier couronné trop tôt menacent la stabilité politique de la cour. Un récit poignant sur l'innocence face aux responsabilités du pouvoir absolu.
+                        </div>
+                        <span class="click-hint">Cliquez pour voir le résumé</span>
+                    </div>
+                </article>
+
+                <article class="movie-card small" data-id="bataille-de-gaulle-2" data-date-sortie="2026-06-26" onclick="toggleSynopsis(this, event)">
+                    <div class="movie-info">
+                        <span class="card-fav-icon" onclick="toggleFavorite('bataille-de-gaulle-2', event)">⭐</span>
+                        <div class="now-playing-badge">🟢 AU CINÉMA !</div>
+                        <span class="movie-type">🎬 Film</span>
+                        <h2 class="movie-title">La bataille de Gaulle - P.2</h2>
+                        <div class="movie-tags">
+                            <span class="tag-genre">Guerre</span>
+                            <span class="tag-genre">Biographie</span>
+                            <span class="tag-classification">Avertissement</span>
+                        </div>
+                        <div class="movie-date">📅 Sortie : 26 Juin 2026</div>
+                        <div class="movie-synopsis">
+                            Le second volet de cette fresque historique majeure centré sur les moments décisifs de la Résistance. Un vibrant hommage au courage, aux choix stratégiques difficiles et aux mots qui ont façonné le destin d'une nation libre.
+                        </div>
+                        <span class="click-hint">Cliquez pour voir le résumé</span>
+                    </div>
+                </article>
+
+                <article class="movie-card small" data-id="odyssee-2026" data-date-sortie="2026-07-15" onclick="toggleSynopsis(this, event)">
+                    <div class="movie-info">
+                        <span class="card-fav-icon" onclick="toggleFavorite('odyssee-2026', event)">⭐</span>
+                        <div class="now-playing-badge">🟢 AU CINÉMA !</div>
+                        <span class="movie-type">🎬 Film Long-Métrage</span>
+                        <h2 class="movie-title">L'Odyssée</h2>
+                        <div class="movie-tags">
+                            <span class="tag-genre">Action</span>
+                            <span class="tag-genre">Aventure</span>
+                            <span class="tag-classification">Avertissement (-12)</span>
+                        </div>
+                        <div class="movie-date">📅 Sortie : 15 Juillet 2026</div>
+                        <div class="movie-synopsis">
+                            Une fresque épique et spectaculaire qui réinvente les plus grands mythes maritimes. Suivez le voyage semé d'embûches d'un équipage courageux luttant contre les éléments et des forces mystérieuses pour retrouver le chemin de leur patrie.
+                        </div>
+                        <span class="click-hint">Cliquez pour voir le résumé</span>
+                    </div>
+                </article>
+
+                <article class="movie-card small" data-id="backrooms-a24" data-date-sortie="2026-06-17" onclick="toggleSynopsis(this, event)">
+                    <div class="movie-info">
+                        <span class="card-fav-icon" onclick="toggleFavorite('backrooms-a24', event)">⭐</span>
+                        <div class="now-playing-badge">🟢 AU CINÉMA !</div>
+                        <span class="movie-type">🎬 Film • A24</span>
+                        <h2 class="movie-title">Backrooms</h2>
+                        <div class="movie-tags">
+                            <span class="tag-genre">Horreur</span>
+                            <span class="tag-genre">Mystère</span>
+                            <span class="tag-classification">Interdit (-12)</span>
+                        </div>
+                        <div class="movie-date">📅 Sortie : 17 Juin 2026</div>
+                        <div class="movie-synopsis">
+                            Inspiré du célèbre phénomène Internet d'horreur psychologique et des creepypastas. Un jeune vidéaste se retrouve accidentellement piégé dans un labyrinthe infini et oppressant de pièces vides aux murs jaunes, traqué par des entités mystérieuses.
+                        </div>
+                        <span class="click-hint">Cliquez pour voir le résumé</span>
+                    </div>
+                </article>
             </div>
         </div>
 
@@ -689,6 +780,43 @@
                         <div class="movie-date">📅 Sortie : 26 Juin 2026</div>
                         <div class="movie-synopsis">
                             La tension monte encore d'un cran en cuisine. Carmen et sa brigade font face à de nouveaux enjeux financiers et personnels colossaux pour maintenir l'excellence de leur restaurant étoilé.
+                        </div>
+                        <span class="click-hint">Cliquez pour voir le résumé</span>
+                    </div>
+                </article>
+
+                <article class="movie-card small" data-id="lupin-s4" onclick="toggleSynopsis(this, event)">
+                    <div class="movie-info">
+                        <span class="card-fav-icon" onclick="toggleFavorite('lupin-s4', event)">⭐</span>
+                        <span class="movie-type series-type">📺 Série • Saison 4</span>
+                        <h2 class="movie-title">Lupin</h2>
+                        <div class="movie-tags">
+                            <span class="tag-provider">Netflix</span>
+                            <span class="tag-genre">Thriller</span>
+                            <span class="tag-genre">Crime</span>
+                            <span class="tag-classification">Avertissement</span>
+                        </div>
+                        <div class="movie-date">📅 Sortie : 23 Octobre 2026</div>
+                        <div class="movie-synopsis">
+                            Assane Diop revient pour de nouveaux casses ingénieux et insaisissables. Traqué de toutes parts, le gentleman cambrioleur devra faire preuve d'une audace sans précédent pour protéger ses proches et clore de vieux comptes.
+                        </div>
+                        <span class="click-hint">Cliquez pour voir le résumé</span>
+                    </div>
+                </article>
+
+                <article class="movie-card small" data-id="harry-potter-s1" onclick="toggleSynopsis(this, event)">
+                    <div class="movie-info">
+                        <span class="card-fav-icon" onclick="toggleFavorite('harry-potter-s1', event)">⭐</span>
+                        <span class="movie-type series-type">📺 Série • Saison 1</span>
+                        <h2 class="movie-title">Harry Potter</h2>
+                        <div class="movie-tags">
+                            <span class="tag-genre">Fantastique</span>
+                            <span class="tag-genre">Magie</span>
+                            <span class="tag-classification all-audiences">Tout Public</span>
+                        </div>
+                        <div class="movie-date">📅 Sortie : 25 Décembre 2026</div>
+                        <div class="movie-synopsis">
+                            Une toute nouvelle adaptation fidèle de la célèbre saga littéraire. Redécouvrez la première année du jeune sorcier à l'école de Poudlard, entre mystères, amitiés naissantes et magie émerveillante.
                         </div>
                         <span class="click-hint">Cliquez pour voir le résumé</span>
                     </div>
@@ -736,7 +864,19 @@
                     <span class="network-label">TikTok :</span>
                     <span class="network-value">@lagendapopp</span>
                 </div>
+                <div class="network-item">
+                    <span>💬</span>
+                    <span class="network-label">Discord :</span>
+                    <span class="network-status">[ En construction... ]</span>
+                </div>
+                <div class="network-item">
+                    <span>▶️</span>
+                    <span class="network-label">YouTube :</span>
+                    <span class="network-status">[ En construction... ]</span>
+                </div>
             </div>
+            <div class="news-box">
+                </div>
         </div>
     </main>
 
