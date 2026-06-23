@@ -141,12 +141,12 @@
         /* Barre d'onglets de navigation AESTHETIC */
         .tabs-navigation {
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             gap: 12px;
-            max-width: 800px;
+            max-width: 850px;
             margin: 35px auto 15px auto;
-            padding: 6px;
+            padding: 6px 14px 6px 6px;
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid rgba(255, 255, 255, 0.04);
             border-radius: 20px;
@@ -178,7 +178,7 @@
             box-shadow: 0 4px 15px rgba(167, 139, 250, 0.1);
         }
 
-        /* Bouton Refresh tout à droite des onglets */
+        /* Bouton Refresh poussé tout à droite */
         .refresh-tab-btn {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.08);
@@ -191,6 +191,8 @@
             align-items: center;
             justify-content: center;
             transition: all 0.2s ease;
+            margin-left: auto; /* Force la séparation vers la droite */
+            flex-grow: 0;
         }
 
         .refresh-tab-btn:hover {
@@ -371,7 +373,7 @@
             color: #94a3b8;
             padding: 3px 12px;
             border-radius: 20px;
-            font-size: 0.7 seam;
+            font-size: 0.7rem;
             text-transform: uppercase;
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
@@ -567,9 +569,9 @@
         @media (max-width: 900px) {
             .header-container { flex-direction: column; gap: 15px; text-align: center; }
             .search-container { width: 100% !important; }
-            .tabs-navigation { flex-wrap: wrap; background: transparent; border: none; backdrop-filter: none; }
+            .tabs-navigation { flex-wrap: wrap; background: transparent; border: none; backdrop-filter: none; padding-right: 6px; }
             .tab-btn { min-width: 100px; background: rgba(255, 255, 255, 0.02); border-color: rgba(255, 255, 255, 0.05); }
-            .refresh-tab-btn { width: 100%; margin-top: 5px; }
+            .refresh-tab-btn { width: 100%; margin-left: 0; margin-top: 5px; }
         }
 
         @media (max-width: 768px) {
