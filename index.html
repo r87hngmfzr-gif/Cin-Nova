@@ -96,7 +96,14 @@
             transform: scale(1.08);
         }
 
-        /* Conteneur Barre de recherche tout à droite */
+        /* Bloc de droite regroupant recherche et favoris */
+        .right-header-block {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Conteneur Barre de recherche */
         .search-container {
             display: flex;
             align-items: center;
@@ -135,6 +142,26 @@
             cursor: pointer;
             margin-left: 8px;
             user-select: none;
+        }
+
+        /* Bouton Favoris Étoile */
+        .fav-btn {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 1.4rem;
+            padding: 10px;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .fav-btn:hover {
+            background: rgba(254, 240, 138, 0.1);
+            border-color: rgba(254, 240, 138, 0.4);
+            transform: scale(1.08);
         }
 
         /* Message si aucun résultat */
@@ -465,7 +492,8 @@
 
         @media (max-width: 900px) {
             .header-container { flex-direction: column; gap: 15px; text-align: center; }
-            .search-container { width: 100% !important; }
+            .right-header-block { width: 100%; justify-content: center; }
+            .search-container { width: 100% !important; max-width: 240px; }
         }
 
         @media (max-width: 768px) {
@@ -488,9 +516,12 @@
             <button class="news-btn" onclick="showPage('news-page')">📰</button>
         </div>
 
-        <div class="search-container">
-            <input type="text" class="search-input" placeholder="Rechercher..." id="main-search" oninput="performSearch()">
-            <span class="search-icon">🔍</span>
+        <div class="right-header-block">
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Rechercher..." id="main-search" oninput="performSearch()">
+                <span class="search-icon">🔍</span>
+            </div>
+            <button class="fav-btn" onclick="showPage('fav-page')" title="Mes Favoris">⭐</button>
         </div>
     </header>
 
@@ -577,7 +608,7 @@
                         </div>
                         <div class="movie-date">📅 Sortie : 29 Juillet 2026</div>
                         <div class="movie-synopsis">
-                            Quatre ans se sont écoulés. Peter Parker, désormais jeune adulte, vit totalement isolé et s'est effacé de la mémoire de ses proches. Une nouvelle ère commence pour le tisseur de toile qui doit réapprendre à protéger Manhattan tout en gérant sa nouvelle réalité.
+                            Quatre ans se sont écoulés. Peter Parker, désormais jeune adulte, vit totalement isolé et s'est effacé de la mémoire de ses proches. Une nouvelle ère commence pour le tisseur de toile qui doit réapprendre à protéger Manhattan tout en gérant sa nouvelle reality.
                         </div>
                         <span class="click-hint">Cliquez pour voir le résumé</span>
                     </div>
@@ -788,6 +819,15 @@
         </div>
     </main>
 
+    <main class="page-view" id="fav-page">
+        <button class="back-btn" onclick="showPage('home-page')">← Retour à l'accueil</button>
+        <br>
+        <h2 class="section-title">MES FAVORIS ⭐️</h2>
+        <div class="coming-soon-box" style="margin-top: 10px;">
+            Aucun favori pour le moment ⭐️
+        </div>
+    </main>
+
     <main class="page-view" id="news-page">
         <button class="back-btn" onclick="showPage('home-page')">← Retour à l'accueil</button>
         <br>
@@ -930,7 +970,6 @@
             });
 
             sections.forEach(sect => {
-                // Gestion spécifique pour les sections vides d'attente (Animes et Calendrier)
                 if (sect.id === 'sect-anime') {
                     if (query !== "" && ! "animes".includes(query)) {
                         sect.style.display = "none";
