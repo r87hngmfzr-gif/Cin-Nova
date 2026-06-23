@@ -96,14 +96,7 @@
             transform: scale(1.08);
         }
 
-        /* Bloc de droite regroupant recherche et favoris */
-        .right-header-block {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        /* Conteneur Barre de recherche */
+        /* Conteneur Barre de recherche tout à droite */
         .search-container {
             display: flex;
             align-items: center;
@@ -142,26 +135,6 @@
             cursor: pointer;
             margin-left: 8px;
             user-select: none;
-        }
-
-        /* Bouton Global Favoris Étoile */
-        .fav-btn {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            font-size: 1.4rem;
-            padding: 10px;
-            border-radius: 12px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s ease;
-        }
-
-        .fav-btn:hover {
-            background: rgba(254, 240, 138, 0.1);
-            border-color: rgba(254, 240, 138, 0.4);
-            transform: scale(1.08);
         }
 
         /* Message si aucun résultat */
@@ -226,13 +199,15 @@
         }
 
         /* Grilles */
-        .movies-grid, .small-movies-grid, .series-grid {
+        .movies-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr); 
             gap: 40px; 
         }
 
         .small-movies-grid, .series-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
             gap: 25px;
         }
 
@@ -249,6 +224,9 @@
             cursor: pointer;
             position: relative;
             overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
         .movie-card.large { min-height: 280px; }
@@ -260,32 +238,8 @@
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
         }
 
-        .movie-info { padding: 30px; z-index: 2; position: relative; }
+        .movie-info { padding: 30px; z-index: 2; }
         .movie-card.small .movie-info { padding: 22px; }
-
-        /* Bouton Action Favori individuel sur la carte */
-        .card-fav-icon {
-            position: absolute;
-            top: 25px;
-            right: 25px;
-            font-size: 1.4rem;
-            cursor: pointer;
-            z-index: 10;
-            transition: transform 0.2s ease;
-            user-select: none;
-            opacity: 0.4;
-            filter: grayscale(100%);
-        }
-        .movie-card.small .card-fav-icon { top: 18px; right: 18px; }
-
-        .card-fav-icon:hover {
-            transform: scale(1.2);
-        }
-
-        .card-fav-icon.is-favorite {
-            opacity: 1;
-            filter: grayscale(0%);
-        }
 
         .movie-type {
             font-size: 0.75rem;
@@ -295,7 +249,6 @@
             margin-bottom: 6px;
             display: block;
             font-weight: 600;
-            padding-right: 30px; 
         }
 
         .movie-type.series-type {
@@ -306,7 +259,6 @@
             margin: 0 0 12px 0;
             font-weight: 700;
             color: #ffffff;
-            padding-right: 20px;
         }
         .movie-card.large .movie-title { font-size: 2rem; }
         .movie-card.small .movie-title { font-size: 1.4rem; }
@@ -423,19 +375,19 @@
             gap: 25px;
         }
 
-        /* Blocs épinglés pour les Nouvelles et Réseaux */
-        .pinned-networks-box {
-            background: linear-gradient(135deg, rgba(167, 139, 250, 0.1), rgba(255, 117, 140, 0.05));
-            border: 2px dashed rgba(167, 139, 250, 0.4);
+        /* Blocs épinglés */
+        .pinned-alert-box {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(255, 117, 140, 0.05));
+            border: 2px dashed rgba(239, 68, 68, 0.5);
             padding: 25px;
             border-radius: 20px;
             position: relative;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
         }
 
-        .pinned-alert-box {
-            background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(255, 117, 140, 0.05));
-            border: 2px dashed rgba(239, 68, 68, 0.5);
+        .pinned-networks-box {
+            background: linear-gradient(135deg, rgba(167, 139, 250, 0.1), rgba(255, 117, 140, 0.05));
+            border: 2px dashed rgba(167, 139, 250, 0.4);
             padding: 25px;
             border-radius: 20px;
             position: relative;
@@ -522,8 +474,7 @@
 
         @media (max-width: 900px) {
             .header-container { flex-direction: column; gap: 15px; text-align: center; }
-            .right-header-block { width: 100%; justify-content: center; }
-            .search-container { width: 100% !important; max-width: 240px; }
+            .search-container { width: 100% !important; }
         }
 
         @media (max-width: 768px) {
@@ -546,12 +497,9 @@
             <button class="news-btn" onclick="showPage('news-page')">📰</button>
         </div>
 
-        <div class="right-header-block">
-            <div class="search-container">
-                <input type="text" class="search-input" placeholder="Rechercher..." id="main-search" oninput="performSearch()">
-                <span class="search-icon">🔍</span>
-            </div>
-            <button class="fav-btn" onclick="showPage('fav-page')" title="Mes Favoris">⭐</button>
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Rechercher..." id="main-search" oninput="performSearch()">
+            <span class="search-icon">🔍</span>
         </div>
     </header>
 
@@ -563,9 +511,8 @@
             <h2 class="section-title" style="margin-top: 20px;">Films à l'affiche</h2>
             <div class="movies-grid">
                 
-                <article class="movie-card large" data-id="minions-monstres" data-date-sortie="2026-06-24" onclick="toggleSynopsis(this, event)">
+                <article class="movie-card large" id="card-minions" data-date-sortie="2026-06-24" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
-                        <span class="card-fav-icon" onclick="toggleFavorite('minions-monstres', event)">⭐</span>
                         <div class="now-playing-badge">🟢 AU CINÉMA !</div>
                         <span class="movie-type">🎬 Film Long-Métrage</span>
                         <h2 class="movie-title">Des Minions et des monstres</h2>
@@ -582,9 +529,8 @@
                     </div>
                 </article>
 
-                <article class="movie-card large" data-id="toy-story-5" data-date-sortie="2026-06-15" onclick="toggleSynopsis(this, event)">
+                <article class="movie-card large" id="card-toystory" data-date-sortie="2026-06-15" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
-                        <span class="card-fav-icon" onclick="toggleFavorite('toy-story-5', event)">⭐</span>
                         <div class="now-playing-badge">🟢 AU CINÉMA !</div>
                         <span class="movie-type">🎬 Film • Pixar</span>
                         <h2 class="movie-title">Toy Story 5</h2>
@@ -608,9 +554,8 @@
             <h2 class="section-title">Films</h2>
             <div class="small-movies-grid">
 
-                <article class="movie-card small" data-id="vaiana-live" data-date-sortie="2026-07-08" onclick="toggleSynopsis(this, event)">
+                <article class="movie-card small" data-date-sortie="2026-07-08" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
-                        <span class="card-fav-icon" onclick="toggleFavorite('vaiana-live', event)">⭐</span>
                         <div class="now-playing-badge">🟢 AU CINÉMA !</div>
                         <span class="movie-type">🎬 Film • Disney Live-Action</span>
                         <h2 class="movie-title">Vaiana (Live-Action)</h2>
@@ -628,9 +573,8 @@
                     </div>
                 </article>
 
-                <article class="movie-card small" data-id="spiderman-brandnew" data-date-sortie="2026-07-29" onclick="toggleSynopsis(this, event)">
+                <article class="movie-card small" data-date-sortie="2026-07-29" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
-                        <span class="card-fav-icon" onclick="toggleFavorite('spiderman-brandnew', event)">⭐</span>
                         <div class="now-playing-badge">🟢 AU CINÉMA !</div>
                         <span class="movie-type">🎬 Film • Marvel Studios / Sony</span>
                         <h2 class="movie-title">Spider-Man: Brand New Day</h2>
@@ -648,9 +592,8 @@
                     </div>
                 </article>
 
-                <article class="movie-card small" data-id="resident-evil-reboot" data-date-sortie="2026-09-16" onclick="toggleSynopsis(this, event)">
+                <article class="movie-card small" data-date-sortie="2026-09-16" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
-                        <span class="card-fav-icon" onclick="toggleFavorite('resident-evil-reboot', event)">⭐</span>
                         <div class="now-playing-badge">🟢 AU CINÉMA !</div>
                         <span class="movie-type">🎬 Film • Columbia / Constantin</span>
                         <h2 class="movie-title">Resident Evil</h2>
@@ -668,9 +611,8 @@
                     </div>
                 </article>
 
-                <article class="movie-card small" data-id="avengers-doomsday" data-date-sortie="2026-12-18" onclick="toggleSynopsis(this, event)">
+                <article class="movie-card small" data-date-sortie="2026-12-18" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
-                        <span class="card-fav-icon" onclick="toggleFavorite('avengers-doomsday', event)">⭐</span>
                         <div class="now-playing-badge">🟢 AU CINÉMA !</div>
                         <span class="movie-type">🎬 Film • Marvel Studios</span>
                         <h2 class="movie-title">Avengers: Doomsday</h2>
@@ -688,9 +630,8 @@
                     </div>
                 </article>
                 
-                <article class="movie-card small" data-id="caprices-enfant-roi" data-date-sortie="2026-06-24" onclick="toggleSynopsis(this, event)">
+                <article class="movie-card small" data-date-sortie="2026-06-24" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
-                        <span class="card-fav-icon" onclick="toggleFavorite('caprices-enfant-roi', event)">⭐</span>
                         <div class="now-playing-badge">🟢 AU CINÉMA !</div>
                         <span class="movie-type">🎬 Film</span>
                         <h2 class="movie-title">Les caprices de l'enfant roi</h2>
@@ -707,9 +648,8 @@
                     </div>
                 </article>
 
-                <article class="movie-card small" data-id="bataille-de-gaulle-2" data-date-sortie="2026-06-26" onclick="toggleSynopsis(this, event)">
+                <article class="movie-card small" data-date-sortie="2026-06-26" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
-                        <span class="card-fav-icon" onclick="toggleFavorite('bataille-de-gaulle-2', event)">⭐</span>
                         <div class="now-playing-badge">🟢 AU CINÉMA !</div>
                         <span class="movie-type">🎬 Film</span>
                         <h2 class="movie-title">La bataille de Gaulle - P.2</h2>
@@ -720,15 +660,14 @@
                         </div>
                         <div class="movie-date">📅 Sortie : 26 Juin 2026</div>
                         <div class="movie-synopsis">
-                            Le second volet de cette fresque historique majeure centré sur les moments décisifs de la Résistance. Un vibrant hommage au courage, aux choix stratégiques difficiles et aux mots qui ont façonné le destin d'une nation libre.
+                            Le second volet de cette fresque historique majeure centré sur les moments décisifs de la Résistance. Un vibrant hommage au courage, aux choix stratégiques difficiles et aux mots qui ont façonné le destiny d'une nation libre.
                         </div>
                         <span class="click-hint">Cliquez pour voir le résumé</span>
                     </div>
                 </article>
 
-                <article class="movie-card small" data-id="odyssee-2026" data-date-sortie="2026-07-15" onclick="toggleSynopsis(this, event)">
+                <article class="movie-card small" data-date-sortie="2026-07-15" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
-                        <span class="card-fav-icon" onclick="toggleFavorite('odyssee-2026', event)">⭐</span>
                         <div class="now-playing-badge">🟢 AU CINÉMA !</div>
                         <span class="movie-type">🎬 Film Long-Métrage</span>
                         <h2 class="movie-title">L'Odyssée</h2>
@@ -745,9 +684,8 @@
                     </div>
                 </article>
 
-                <article class="movie-card small" data-id="backrooms-a24" data-date-sortie="2026-06-17" onclick="toggleSynopsis(this, event)">
+                <article class="movie-card small" data-date-sortie="2026-06-17" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
-                        <span class="card-fav-icon" onclick="toggleFavorite('backrooms-a24', event)">⭐</span>
                         <div class="now-playing-badge">🟢 AU CINÉMA !</div>
                         <span class="movie-type">🎬 Film • A24</span>
                         <h2 class="movie-title">Backrooms</h2>
@@ -763,6 +701,7 @@
                         <span class="click-hint">Cliquez pour voir le résumé</span>
                     </div>
                 </article>
+
             </div>
         </div>
 
@@ -770,9 +709,8 @@
             <h2 class="section-title">Séries</h2>
             <div class="series-grid">
 
-                <article class="movie-card small" data-id="avatar-s2" onclick="toggleSynopsis(this, event)">
+                <article class="movie-card small" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
-                        <span class="card-fav-icon" onclick="toggleFavorite('avatar-s2', event)">⭐</span>
                         <span class="movie-type series-type">📺 Série • Saison 2</span>
                         <h2 class="movie-title">Avatar: The Last Airbender</h2>
                         <div class="movie-tags">
@@ -789,9 +727,8 @@
                     </div>
                 </article>
 
-                <article class="movie-card small" data-id="the-bear-s5" onclick="toggleSynopsis(this, event)">
+                <article class="movie-card small" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
-                        <span class="card-fav-icon" onclick="toggleFavorite('the-bear-s5', event)">⭐</span>
                         <span class="movie-type series-type">📺 Série • Saison 5</span>
                         <h2 class="movie-title">The Bear</h2>
                         <div class="movie-tags">
@@ -807,9 +744,8 @@
                     </div>
                 </article>
 
-                <article class="movie-card small" data-id="lupin-s4" onclick="toggleSynopsis(this, event)">
+                <article class="movie-card small" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
-                        <span class="card-fav-icon" onclick="toggleFavorite('lupin-s4', event)">⭐</span>
                         <span class="movie-type series-type">📺 Série • Saison 4</span>
                         <h2 class="movie-title">Lupin</h2>
                         <div class="movie-tags">
@@ -826,9 +762,8 @@
                     </div>
                 </article>
 
-                <article class="movie-card small" data-id="harry-potter-s1" onclick="toggleSynopsis(this, event)">
+                <article class="movie-card small" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
-                        <span class="card-fav-icon" onclick="toggleFavorite('harry-potter-s1', event)">⭐</span>
                         <span class="movie-type series-type">📺 Série • Saison 1</span>
                         <h2 class="movie-title">Harry Potter</h2>
                         <div class="movie-tags">
@@ -843,6 +778,7 @@
                         <span class="click-hint">Cliquez pour voir le résumé</span>
                     </div>
                 </article>
+
             </div>
         </div>
 
@@ -851,24 +787,6 @@
             <div class="coming-soon-box">
                 Non disponible pour le moment 🚫
             </div>
-        </div>
-
-        <div class="section-block" id="sect-calendrier">
-            <h2 class="section-title">CALENDRIER</h2>
-            <div class="coming-soon-box">
-                Non disponible pour le moment 🚫
-            </div>
-        </div>
-    </main>
-
-    <main class="page-view" id="fav-page">
-        <button class="back-btn" onclick="showPage('home-page')">← Retour à l'accueil</button>
-        <br>
-        <h2 class="section-title">MES FAVORIS ⭐️</h2>
-        <div id="fav-grid-container" class="small-movies-grid" style="margin-top: 20px;">
-            </div>
-        <div id="fav-empty-msg" class="coming-soon-box" style="margin-top: 10px;">
-            Aucun favori pour le moment ⭐️
         </div>
     </main>
 
@@ -887,105 +805,39 @@
             <div class="pinned-networks-box">
                 <span class="pinned-tag">📌 Épinglé</span>
                 <h3 class="networks-title">NOS RESEAUX</h3>
+                
                 <div class="network-item">
                     <span>📱</span>
                     <span class="network-label">TikTok :</span>
                     <span class="network-value">@lagendapopp</span>
                 </div>
+                
                 <div class="network-item">
                     <span>💬</span>
                     <span class="network-label">Discord :</span>
                     <span class="network-status">[ En construction... ]</span>
                 </div>
+
                 <div class="network-item">
                     <span>▶️</span>
                     <span class="network-label">YouTube :</span>
                     <span class="network-status">[ En construction... ]</span>
                 </div>
             </div>
+
             <div class="news-box">
-                </div>
+            </div>
         </div>
     </main>
 
     <script>
-        // --- LOGIQUE DES FAVORIS (LOCALSTORAGE) ---
-        let favorites = JSON.parse(localStorage.getItem('cineNovaFavs')) || [];
-
-        function saveFavorites() {
-            localStorage.setItem('cineNovaFavs', JSON.stringify(favorites));
-        }
-
-        function toggleFavorite(id, event) {
-            event.stopPropagation(); // Évite d'ouvrir le résumé en cliquant sur l'étoile
-            
-            const index = favorites.indexOf(id);
-            if (index > -1) {
-                favorites.splice(index, 1); // Enlever des favoris
-            } else {
-                favorites.push(id); // Ajouter aux favoris
-            }
-            
-            saveFavorites();
-            applyFavoriteStyles();
-            if (document.getElementById('fav-page').classList.contains('active')) {
-                renderFavoritesPage();
-            }
-        }
-
-        function applyFavoriteStyles() {
-            document.querySelectorAll('.movie-card').forEach(card => {
-                const id = card.getAttribute('data-id');
-                const favIcon = card.querySelector('.card-fav-icon');
-                if (favIcon) {
-                    if (favorites.includes(id)) {
-                        favIcon.classList.add('is-favorite');
-                    } else {
-                        favIcon.classList.remove('is-favorite');
-                    }
-                }
-            });
-        }
-
-        function renderFavoritesPage() {
-            const gridContainer = document.getElementById('fav-grid-container');
-            const emptyMsg = document.getElementById('fav-empty-msg');
-            gridContainer.innerHTML = '';
-
-            let hasFavs = false;
-
-            favorites.forEach(favId => {
-                const originalCard = document.querySelector(`.movie-card[data-id="${favId}"]`);
-                if (originalCard) {
-                    hasFavs = true;
-                    const clonedCard = originalCard.cloneNode(true);
-                    clonedCard.classList.remove('active');
-                    
-                    clonedCard.setAttribute('onclick', 'toggleSynopsis(this, event)');
-                    const cloneFavIcon = clonedCard.querySelector('.card-fav-icon');
-                    if (cloneFavIcon) {
-                        cloneFavIcon.setAttribute('onclick', `toggleFavorite('${favId}', event)`);
-                    }
-                    
-                    gridContainer.appendChild(clonedCard);
-                }
-            });
-
-            if (hasFavs) {
-                emptyMsg.style.display = 'none';
-                gridContainer.style.display = 'grid';
-            } else {
-                emptyMsg.style.display = 'block';
-                gridContainer.style.display = 'none';
-            }
-        }
-
-
-        // --- TIMER DE MISE À JOUR ---
+        // --- TIMER DE MISE À ZONE (Cible : 20 Juillet 2026 à minuit) ---
         const dateCible = new Date("Jul 20, 2026 00:00:00").getTime();
+
         const x = setInterval(function() {
             const maintenant = new Date().getTime();
             const distance = dateCible - maintenant;
+
             const jours = Math.floor(distance / (1000 * 60 * 60 * 24));
             const heures = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -1001,12 +853,25 @@
         }, 1000);
 
 
-        // --- INITIALISATION & DATES ---
+        // --- GESTION AUTOMATIQUE DES DATES ET CHARGEMENT DES PHOTOS OFFICIELLES ---
         document.addEventListener("DOMContentLoaded", function() {
-            applyFavoriteStyles();
+            // Configuration des photos officielles pour uniquement les grands cadres
+            const imgMinions = "https://images.unsplash.com/photo-1608889174639-41419f6b1d4d?q=80&w=1000&auto=format&fit=crop"; // Illustration Minions-vibe de haute qualité
+            const imgToyStory = "https://images.unsplash.com/photo-1594787318286-3d835c1d207f?q=80&w=1000&auto=format&fit=crop"; // Illustration Jouets/Toy Story de haute qualité
+
+            const cMinions = document.getElementById("card-minions");
+            const cToyStory = document.getElementById("card-toystory");
+
+            if(cMinions) {
+                cMinions.style.backgroundImage = "linear-gradient(135deg, rgba(19, 19, 26, 0.85), rgba(26, 26, 38, 0.92)), url('" + imgMinions + "')";
+            }
+            if(cToyStory) {
+                cToyStory.style.backgroundImage = "linear-gradient(135deg, rgba(19, 19, 26, 0.85), rgba(26, 26, 38, 0.92)), url('" + imgToyStory + "')";
+            }
 
             const aujourdhui = new Date();
             aujourdhui.setHours(0, 0, 0, 0);
+
             const cartesFilms = document.querySelectorAll(".movie-card[data-date-sortie]");
 
             cartesFilms.forEach(carte => {
@@ -1016,7 +881,8 @@
                 const dateSortie = new Date(dateSortieStr);
                 dateSortie.setHours(0, 0, 0, 0);
 
-                const differenceJours = Math.floor((aujourdhui.getTime() - dateSortie.getTime()) / (1000 * 60 * 60 * 24));
+                const differenceTemps = aujourdhui.getTime() - dateSortie.getTime();
+                const differenceJours = Math.floor(differenceTemps / (1000 * 60 * 60 * 24));
 
                 if (differenceJours >= 0) {
                     if (differenceJours > 10) {
@@ -1024,6 +890,7 @@
                     } else {
                         const badgeVert = carte.querySelector(".now-playing-badge");
                         const texteDate = carte.querySelector(".movie-date");
+
                         if (badgeVert) badgeVert.style.display = "block";
                         if (texteDate) texteDate.style.display = "none";
                     }
@@ -1038,22 +905,23 @@
             
             if (pageId === 'home-page') {
                 performSearch();
-                applyFavoriteStyles();
-            } else if (pageId === 'fav-page') {
-                renderFavoritesPage();
             }
         }
 
         // Dérouler/fermer le résumé
-        function toggleSynopsis(card, event) {
+        function toggleSynopsis(card) {
             card.classList.toggle('active');
             const hint = card.querySelector('.click-hint');
             if (hint) {
-                hint.textContent = card.classList.contains('active') ? 'Cliquez pour refermer' : 'Cliquez pour voir le résumé';
+                if (card.classList.contains('active')) {
+                    hint.textContent = 'Cliquez pour refermer';
+                } else {
+                    hint.textContent = 'Cliquez pour voir le résumé';
+                }
             }
         }
 
-        // Moteur de recherche
+        // Moteur de recherche fonctionnel en temps réel
         function performSearch() {
             const query = document.getElementById('main-search').value.toLowerCase().trim();
             const cards = document.querySelectorAll('#home-page .movie-card');
@@ -1063,8 +931,11 @@
             cards.forEach(card => {
                 const title = card.querySelector('.movie-title').textContent.toLowerCase();
                 const type = card.querySelector('.movie-type') ? card.querySelector('.movie-type').textContent.toLowerCase() : "";
+                
                 let tagsText = "";
-                card.querySelectorAll('.tag-genre, .tag-provider').forEach(g => tagsText += g.textContent.toLowerCase() + " ");
+                card.querySelectorAll('.tag-genre, .tag-provider').forEach(g => {
+                    tagsText += g.textContent.toLowerCase() + " ";
+                });
 
                 if (title.includes(query) || type.includes(query) || tagsText.includes(query)) {
                     card.style.display = "flex";
@@ -1076,21 +947,32 @@
 
             sections.forEach(sect => {
                 if (sect.id === 'sect-anime') {
-                    sect.style.display = (query !== "" && ! "animes".includes(query)) ? "none" : "block";
-                    if (query !== "" && "animes".includes(query)) totalVisible++;
+                    if (query !== "" && ! "animes".includes(query)) {
+                        sect.style.display = "none";
+                    } else {
+                        sect.style.display = "block";
+                        if (query !== "") totalVisible++;
+                    }
                     return;
                 }
-                if (sect.id === 'sect-calendrier') {
-                    sect.style.display = (query !== "" && ! "calendrier".includes(query)) ? "none" : "block";
-                    if (query !== "" && "calendrier".includes(query)) totalVisible++;
-                    return;
-                }
+
                 const visibleInSect = sect.querySelectorAll('.movie-card[style="display: flex;"]').length;
-                sect.style.display = (query !== "" && visibleInSect === 0) ? "none" : "block";
+                
+                if (query !== "" && visibleInSect === 0) {
+                    sect.style.display = "none";
+                } else {
+                    sect.style.display = "block";
+                }
             });
 
-            document.getElementById('no-results').style.display = (totalVisible === 0 && query !== "") ? "block" : "none";
+            const noResultsMsg = document.getElementById('no-results');
+            if (totalVisible === 0 && query !== "") {
+                noResultsMsg.style.display = "block";
+            } else {
+                noResultsMsg.style.display = "none";
+            }
         }
     </script>
+
 </body>
 </html>
