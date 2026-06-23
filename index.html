@@ -851,46 +851,13 @@
 
         <div class="section-block" id="sect-anime">
             <h2 class="section-title" id="title-anime">ANIMES</h2>
-            <div class="anime-grid">
-
-                <article class="movie-card small" data-date-sortie="2026-06-20" onclick="toggleSynopsis(this)">
-                    <div class="movie-info">
-                        <div class="now-playing-badge">🟢 EST SORTI(E) !</div>
-                        <span class="movie-type anime-type">🍥 Anime • Saison Finale</span>
-                        <h2 class="movie-title">Demon Slayer: Infinity Castle</h2>
-                        <div class="movie-tags">
-                            <span class="tag-provider">Crunchyroll</span>
-                            <span class="tag-genre">Action</span>
-                            <span class="tag-genre">Animation</span>
-                            <span class="tag-classification">Avertissement</span>
-                        </div>
-                        <div class="movie-date">📅 Sortie : 20 Juin 2026</div>
-                        <div class="movie-synopsis">
-                            Le combat ultime contre Muzan Kibutsuji commence au cœur de la Forteresse Dimensionnelle Infinie. Les piliers restants et Tanjiro jettent leurs dernières forces dans cette bataille historique.
-                        </div>
-                        <span class="click-hint">Cliquez pour voir le résumé</span>
-                    </div>
-                </article>
-
-                <article class="movie-card small" data-date-sortie="2026-07-12" onclick="toggleSynopsis(this)">
-                    <div class="movie-info">
-                        <div class="now-playing-badge">🟢 EST SORTI(E) !</div>
-                        <span class="movie-type anime-type">🍥 Anime • Saison 3</span>
-                        <h2 class="movie-title">One-Punch Man</h2>
-                        <div class="movie-tags">
-                            <span class="tag-genre">Action</span>
-                            <span class="tag-genre">Comédie</span>
-                            <span class="tag-classification all-audiences">Tout Public</span>
-                        </div>
-                        <div class="movie-date">📅 Sortie : 12 Juillet 2026</div>
-                        <div class="movie-synopsis">
-                            L'Association des Monstres lance son offensive générale contre les Héros. Saitama tente tant bien que mal de trouver un adversaire à sa mesure au milieu de ce chaos généralisé.
-                        </div>
-                        <span class="click-hint">Cliquez pour voir le résumé</span>
-                    </div>
-                </article>
-
+            
+            <div class="coming-soon-box" id="anime-placeholder">
+                Non disponible pour le moment 🚫
             </div>
+            
+            <div class="anime-grid" id="anime-container">
+                </div>
         </div>
 
         <div class="section-block" id="sect-calendar">
@@ -1011,6 +978,19 @@
                     }
                 }
             });
+
+            // Gestion de l'affichage du placeholder "Non disponible" pour les animes
+            // S'il ne reste aucune carte dans la grille des animes (ou si elle est vide), on affiche l'encadré
+            const animeContainer = document.getElementById("anime-container");
+            const animePlaceholder = document.getElementById("anime-placeholder");
+            if (animeContainer && animePlaceholder) {
+                const nbAnimesRestants = animeContainer.querySelectorAll(".movie-card").length;
+                if (nbAnimesRestants === 0) {
+                    animePlaceholder.style.display = "block";
+                } else {
+                    animePlaceholder.style.display = "none";
+                }
+            }
         });
 
         function scrollToSection(elementId) {
