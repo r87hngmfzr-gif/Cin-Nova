@@ -142,8 +142,8 @@
         .tabs-navigation {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            max-width: 600px;
+            gap: 12px;
+            max-width: 750px;
             margin: 30px auto 10px auto;
             padding: 0 20px;
         }
@@ -152,14 +152,15 @@
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.06);
             color: #94a3b8;
-            padding: 10px 24px;
+            padding: 10px 16px;
             border-radius: 14px;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.25s ease;
             flex: 1;
             text-align: center;
+            white-space: nowrap;
         }
 
         .tab-btn:hover {
@@ -217,7 +218,7 @@
             color: #ffffff;
             position: relative;
             display: inline-block;
-            scroll-margin-top: 30px; /* Évite de coller à la barre au défilement */
+            scroll-margin-top: 30px; /* Évite de coller au haut de l'écran lors du clic sur un onglet */
         }
 
         .section-title::after {
@@ -356,7 +357,7 @@
             display: none; 
         }
 
-        /* Style pour l'emplacement vide Arrive bientôt */
+        /* Style pour l'emplacement vide Arrive bientôt / Indisponible */
         .coming-soon-box {
             background: rgba(255, 255, 255, 0.01);
             border: 2px dashed rgba(255, 255, 255, 0.05);
@@ -484,7 +485,7 @@
             .header-container { flex-direction: column; gap: 15px; text-align: center; }
             .search-container { width: 100% !important; }
             .tabs-navigation { flex-wrap: wrap; }
-            .tab-btn { min-width: 110px; }
+            .tab-btn { min-width: 100px; }
         }
 
         @media (max-width: 768px) {
@@ -514,6 +515,7 @@
     </header>
 
     <nav class="tabs-navigation" id="main-tabs">
+        <button class="tab-btn" onclick="scrollToSection('title-affiche')">À l'affiche</button>
         <button class="tab-btn" onclick="scrollToSection('title-films')">Films</button>
         <button class="tab-btn" onclick="scrollToSection('title-series')">Séries</button>
         <button class="tab-btn" onclick="scrollToSection('title-anime')">Animes</button>
@@ -524,8 +526,51 @@
         
         <div id="no-results" class="no-results-msg">Aucun contenu ne correspond à votre recherche.</div>
 
+        <div class="section-block" id="sect-affiche">
+            <h2 class="section-title" id="title-affiche" style="margin-top: 20px;">Films à l'affiche</h2>
+            <div class="movies-grid">
+                
+                <article class="movie-card large" data-date-sortie="2026-06-24" onclick="toggleSynopsis(this)">
+                    <div class="movie-info">
+                        <div class="now-playing-badge">🟢 AU CINÉMA !</div>
+                        <span class="movie-type">🎬 Film Long-Métrage</span>
+                        <h2 class="movie-title">Des Minions et des monstres</h2>
+                        <div class="movie-tags">
+                            <span class="tag-genre">Animation</span>
+                            <span class="tag-genre">Comédie</span>
+                            <span class="tag-classification all-audiences">Tout Public</span>
+                        </div>
+                        <div class="movie-date">📅 Sortie : 24 Juin 2026</div>
+                        <div class="movie-synopsis">
+                            Désireux de prouver leur courage, les Minions s'allient par accident à des créatures légendaires farfelues. Ensemble, they devront faire face à une menace inattendue dans une aventure hilarante pleine de gaffes et de rebondissements.
+                        </div>
+                        <span class="click-hint">Cliquez pour voir le résumé</span>
+                    </div>
+                </article>
+
+                <article class="movie-card large" data-date-sortie="2026-06-15" onclick="toggleSynopsis(this)">
+                    <div class="movie-info">
+                        <div class="now-playing-badge">🟢 AU CINÉMA !</div>
+                        <span class="movie-type">🎬 Film • Pixar</span>
+                        <h2 class="movie-title">Toy Story 5</h2>
+                        <div class="movie-tags">
+                            <span class="tag-provider">Disney / Pixar</span>
+                            <span class="tag-genre">Animation</span>
+                            <span class="tag-genre">Aventure</span>
+                            <span class="tag-classification all-audiences">Tout Public</span>
+                        </div>
+                        <div class="movie-date">📅 Sortie : 15 Juin 2026</div>
+                        <div class="movie-synopsis">
+                            Woody, Buzz et toute la bande sont de retour pour faire face à un nouvel adversaire inattendu : la technologie et l'obsession des enfants modernes pour les écrans. Une aventure drôle et touchante sur l'évolution des jouets dans le monde d'aujourd'hui.
+                        </div>
+                        <span class="click-hint">Cliquez pour voir le résumé</span>
+                    </div>
+                </article>
+            </div>
+        </div>
+
         <div class="section-block" id="sect-films">
-            <h2 class="section-title" id="title-films" style="margin-top: 20px;">Films</h2>
+            <h2 class="section-title" id="title-films">Films</h2>
             <div class="small-movies-grid">
 
                 <article class="movie-card small" data-date-sortie="2026-07-08" onclick="toggleSynopsis(this)">
@@ -670,7 +715,7 @@
                         </div>
                         <div class="movie-date">📅 Sortie : 17 Juin 2026</div>
                         <div class="movie-synopsis">
-                            Inspiré du célèbre phénomène Internet d'horreur psychologique et des creepypastas. Un jeune vidéaste se retrouve accidentellement piégé dans un labyrinthe infini et oppressant de pièces vides aux murs jaunes, traqué par des entités mystérieuses.
+                            Inspiré du célèbre phénomène Internet d'horreur psychologique et des creepypastas. Un young vidéaste se retrouve accidentellement piégé dans un labyrinthe infini et oppressant de pièces vides aux murs jaunes, traqué par des entités mystérieuses.
                         </div>
                         <span class="click-hint">Cliquez pour voir le résumé</span>
                     </div>
@@ -763,46 +808,10 @@
             </div>
         </div>
 
-        <div class="section-block" id="sect-affiche">
-            <h2 class="section-title" id="title-calendar">Films à l'affiche</h2>
-            <div class="movies-grid">
-                
-                <article class="movie-card large" data-date-sortie="2026-06-24" onclick="toggleSynopsis(this)">
-                    <div class="movie-info">
-                        <div class="now-playing-badge">🟢 AU CINÉMA !</div>
-                        <span class="movie-type">🎬 Film Long-Métrage</span>
-                        <h2 class="movie-title">Des Minions et des monstres</h2>
-                        <div class="movie-tags">
-                            <span class="tag-genre">Animation</span>
-                            <span class="tag-genre">Comédie</span>
-                            <span class="tag-classification all-audiences">Tout Public</span>
-                        </div>
-                        <div class="movie-date">📅 Sortie : 24 Juin 2026</div>
-                        <div class="movie-synopsis">
-                            Désireux de prouver leur courage, les Minions s'allient par accident à des créatures légendaires farfelues. Ensemble, they devront faire face à une menace inattendue dans une aventure hilarante pleine de gaffes et de rebondissements.
-                        </div>
-                        <span class="click-hint">Cliquez pour voir le résumé</span>
-                    </div>
-                </article>
-
-                <article class="movie-card large" data-date-sortie="2026-06-15" onclick="toggleSynopsis(this)">
-                    <div class="movie-info">
-                        <div class="now-playing-badge">🟢 AU CINÉMA !</div>
-                        <span class="movie-type">🎬 Film • Pixar</span>
-                        <h2 class="movie-title">Toy Story 5</h2>
-                        <div class="movie-tags">
-                            <span class="tag-provider">Disney / Pixar</span>
-                            <span class="tag-genre">Animation</span>
-                            <span class="tag-genre">Aventure</span>
-                            <span class="tag-classification all-audiences">Tout Public</span>
-                        </div>
-                        <div class="movie-date">📅 Sortie : 15 Juin 2026</div>
-                        <div class="movie-synopsis">
-                            Woody, Buzz et toute la bande sont de retour pour faire face à un nouvel adversaire inattendu : la technologie et l'obsession des enfants modernes pour les écrans. Une aventure drôle et touchante sur l'évolution des jouets dans le monde d'aujourd'hui.
-                        </div>
-                        <span class="click-hint">Cliquez pour voir le résumé</span>
-                    </div>
-                </article>
+        <div class="section-block" id="sect-calendar">
+            <h2 class="section-title" id="title-calendar">CALENDRIER</h2>
+            <div class="coming-soon-box">
+                Non disponible pour le moment 🚫
             </div>
         </div>
 
@@ -957,8 +966,10 @@
             });
 
             sections.forEach(sect => {
-                if (sect.id === 'sect-anime') {
-                    if (query !== "" && ! "animes".includes(query)) {
+                // Gestion des sections vides de base (Animes et Calendrier) pour la recherche
+                if (sect.id === 'sect-anime' || sect.id === 'sect-calendar') {
+                    const motCle = sect.id === 'sect-anime' ? "animes" : "calendrier";
+                    if (query !== "" && !motCle.includes(query)) {
                         sect.style.display = "none";
                     } else {
                         sect.style.display = "block";
