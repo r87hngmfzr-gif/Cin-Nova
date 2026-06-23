@@ -437,7 +437,7 @@
             width: fit-content;
             margin-bottom: 12px;
             text-transform: uppercase;
-            display: none; /* Géré en JavaScript */
+            display: none; /* Géré en JavaScript via data-date-ajout */
         }
 
         /* Style pour l'emplacement vide Arrive bientôt / Indisponible */
@@ -635,7 +635,7 @@
             <h2 class="section-title" id="title-affiche" style="margin-top: 20px;">Films à l'affiche</h2>
             <div class="movies-grid">
                 
-                <article class="movie-card large" data-date-sortie="2026-06-24" onclick="toggleSynopsis(this)">
+                <article class="movie-card large" data-date-sortie="2026-06-24" data-date-ajout="2026-06-23" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
                         <div class="recent-tag">🆕 Ajouter Récemment</div>
                         <div class="now-playing-badge">🟢 EST SORTI(E) !</div>
@@ -654,7 +654,7 @@
                     </div>
                 </article>
 
-                <article class="movie-card large" data-date-sortie="2026-06-15" onclick="toggleSynopsis(this)">
+                <article class="movie-card large" data-date-sortie="2026-06-15" data-date-ajout="2026-06-15" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
                         <div class="recent-tag">🆕 Ajouter Récemment</div>
                         <div class="now-playing-badge">🟢 EST SORTI(E) !</div>
@@ -680,7 +680,7 @@
             <h2 class="section-title" id="title-films">Films</h2>
             <div class="small-movies-grid">
 
-                <article class="movie-card small" data-date-sortie="2026-07-08" onclick="toggleSynopsis(this)">
+                <article class="movie-card small" data-date-sortie="2026-07-08" data-date-ajout="2026-07-08" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
                         <div class="recent-tag">🆕 Ajouter Récemment</div>
                         <div class="now-playing-badge">🟢 EST SORTI(E) !</div>
@@ -700,7 +700,7 @@
                     </div>
                 </article>
 
-                <article class="movie-card small" data-date-sortie="2026-07-29" onclick="toggleSynopsis(this)">
+                <article class="movie-card small" data-date-sortie="2026-07-29" data-date-ajout="2026-07-29" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
                         <div class="recent-tag">🆕 Ajouter Récemment</div>
                         <div class="now-playing-badge">🟢 EST SORTI(E) !</div>
@@ -720,7 +720,7 @@
                     </div>
                 </article>
 
-                <article class="movie-card small" data-date-sortie="2026-09-16" onclick="toggleSynopsis(this)">
+                <article class="movie-card small" data-date-sortie="2026-09-16" data-date-ajout="2026-09-16" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
                         <div class="recent-tag">🆕 Ajouter Récemment</div>
                         <div class="now-playing-badge">🟢 EST SORTI(E) !</div>
@@ -740,7 +740,7 @@
                     </div>
                 </article>
 
-                <article class="movie-card small" data-date-sortie="2026-12-18" onclick="toggleSynopsis(this)">
+                <article class="movie-card small" data-date-sortie="2026-12-18" data-date-ajout="2026-12-18" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
                         <div class="recent-tag">🆕 Ajouter Récemment</div>
                         <div class="now-playing-badge">🟢 EST SORTI(E) !</div>
@@ -760,7 +760,7 @@
                     </div>
                 </article>
                 
-                <article class="movie-card small" data-date-sortie="2026-06-24" onclick="toggleSynopsis(this)">
+                <article class="movie-card small" data-date-sortie="2026-06-24" data-date-ajout="2026-06-24" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
                         <div class="recent-tag">🆕 Ajouter Récemment</div>
                         <div class="now-playing-badge">🟢 EST SORTI(E) !</div>
@@ -779,7 +779,7 @@
                     </div>
                 </article>
 
-                <article class="movie-card small" data-date-sortie="2026-06-26" onclick="toggleSynopsis(this)">
+                <article class="movie-card small" data-date-sortie="2026-06-26" data-date-ajout="2026-06-26" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
                         <div class="recent-tag">🆕 Ajouter Récemment</div>
                         <div class="now-playing-badge">🟢 EST SORTI(E) !</div>
@@ -798,7 +798,7 @@
                     </div>
                 </article>
 
-                <article class="movie-card small" data-date-sortie="2026-07-15" onclick="toggleSynopsis(this)">
+                <article class="movie-card small" data-date-sortie="2026-07-15" data-date-ajout="2026-07-15" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
                         <div class="recent-tag">🆕 Ajouter Récemment</div>
                         <div class="now-playing-badge">🟢 EST SORTI(E) !</div>
@@ -811,13 +811,13 @@
                         </div>
                         <div class="movie-date">📅 Sortie : 15 Juillet 2026</div>
                         <div class="movie-synopsis">
-                            Une fresque épique et spectaculaire qui réinvente les plus grands mythes maritimes. Suivez le voyage semé d'embûches d'un équipage courageux luttant contre les éléments et des forces mystérieuses pour retrouver le chemin de leur patrie.
+                            Une fresque épique et spectaculaire qui réinvente les plus grands mythes maritimes. Suivez le voyage semé d'embûches d'un équipage courageux luttant contre les éléments et des forces mystérieures pour retrouver le chemin de leur patrie.
                         </div>
                         <span class="click-hint">Cliquez pour voir le résumé</span>
                     </div>
                 </article>
 
-                <article class="movie-card small" data-date-sortie="2026-06-17" onclick="toggleSynopsis(this)">
+                <article class="movie-card small" data-date-sortie="2026-06-17" data-date-ajout="2026-06-17" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
                         <div class="recent-tag">🆕 Ajouter Récemment</div>
                         <div class="now-playing-badge">🟢 EST SORTI(E) !</div>
@@ -843,7 +843,7 @@
             <h2 class="section-title" id="title-series">Séries</h2>
             <div class="series-grid">
 
-                <article class="movie-card small" data-date-sortie="2026-06-25" onclick="toggleSynopsis(this)">
+                <article class="movie-card small" data-date-sortie="2026-06-25" data-date-ajout="2026-06-25" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
                         <div class="recent-tag">🆕 Ajouter Récemment</div>
                         <div class="now-playing-badge">🟢 EST SORTI(E) !</div>
@@ -863,7 +863,7 @@
                     </div>
                 </article>
 
-                <article class="movie-card small" data-date-sortie="2026-06-26" onclick="toggleSynopsis(this)">
+                <article class="movie-card small" data-date-sortie="2026-06-26" data-date-ajout="2026-06-26" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
                         <div class="recent-tag">🆕 Ajouter Récemment</div>
                         <div class="now-playing-badge">🟢 EST SORTI(E) !</div>
@@ -882,7 +882,7 @@
                     </div>
                 </article>
 
-                <article class="movie-card small" data-date-sortie="2026-10-23" onclick="toggleSynopsis(this)">
+                <article class="movie-card small" data-date-sortie="2026-10-23" data-date-ajout="2026-10-23" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
                         <div class="recent-tag">🆕 Ajouter Récemment</div>
                         <div class="now-playing-badge">🟢 EST SORTI(E) !</div>
@@ -902,7 +902,7 @@
                     </div>
                 </article>
 
-                <article class="movie-card small" data-date-sortie="2026-12-25" onclick="toggleSynopsis(this)">
+                <article class="movie-card small" data-date-sortie="2026-12-25" data-date-ajout="2026-12-25" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
                         <div class="recent-tag">🆕 Ajouter Récemment</div>
                         <div class="now-playing-badge">🟢 EST SORTI(E) !</div>
@@ -1036,6 +1036,26 @@
             const cartesContenus = document.querySelectorAll(".movie-card[data-date-sortie]");
 
             cartesContenus.forEach(carte => {
+                // 1. GESTION DU BADGE ROUGE "Ajouté Récemment" via data-date-ajout
+                const dateAjoutStr = carte.getAttribute("data-date-ajout");
+                const badgeRouge = carte.querySelector(".recent-tag");
+
+                if (dateAjoutStr) {
+                    const dateAjout = new Date(dateAjoutStr);
+                    dateAjout.setHours(0, 0, 0, 0);
+
+                    const diffAjoutTemps = aujourdhui.getTime() - dateAjout.getTime();
+                    const diffAjoutJours = Math.floor(diffAjoutTemps / (1000 * 60 * 60 * 24));
+
+                    // Si l'ajout a moins de 10 jours (ou égal à 10)
+                    if (diffAjoutJours >= 0 && diffAjoutJours <= 10) {
+                        if (badgeRouge) badgeRouge.style.display = "block";
+                    } else {
+                        if (badgeRouge) badgeRouge.style.display = "none";
+                    }
+                }
+
+                // 2. GESTION DU BADGE VERT ET EFFACEMENT AUTOMATIQUE GLOBAL VIA DATE DE SORTIE
                 const dateSortieStr = carte.getAttribute("data-date-sortie");
                 if (!dateSortieStr) return;
 
@@ -1045,18 +1065,9 @@
                 const differenceTemps = aujourdhui.getTime() - dateSortie.getTime();
                 const differenceJours = Math.floor(differenceTemps / (1000 * 60 * 60 * 24));
 
-                // GESTION DU BADGE ROUGE "Ajouter Récemment" (Actif si moins de 10 jours depuis la sortie)
-                const badgeRouge = carte.querySelector(".recent-tag");
-                if (differenceJours >= 0 && differenceJours <= 10) {
-                    if (badgeRouge) badgeRouge.style.display = "block";
-                } else {
-                    if (badgeRouge) badgeRouge.style.display = "none";
-                }
-
-                // GESTION DU BADGE VERT ET EFFACEMENT AUTOMATIQUE GLOBAL
                 if (differenceJours >= 0) {
                     if (differenceJours > 10) {
-                        // EFFACEMENT AUTOMATIQUE APRÈS 10 JOURS
+                        // EFFACEMENT AUTOMATIQUE APRÈS 10 JOURS DE SORTIE
                         carte.remove();
                     } else {
                         // AFFICHAGE AUTOMATIQUE DU BOUTON VERT "EST SORTI(E) !"
