@@ -138,36 +138,79 @@
             user-select: none;
         }
 
-        /* Barre d'onglets de navigation */
+        /* Barre d'onglets de navigation RE-STYLISÉE AESTHETIC */
         .tabs-navigation {
             display: flex;
             justify-content: center;
             gap: 12px;
             max-width: 750px;
-            margin: 30px auto 10px auto;
-            padding: 0 20px;
+            margin: 35px auto 15px auto;
+            padding: 6px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 20px;
+            backdrop-filter: blur(8px);
         }
 
         .tab-btn {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: transparent;
+            border: 1px solid transparent;
             color: #94a3b8;
             padding: 10px 16px;
             border-radius: 14px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 600;
+            letter-spacing: 0.5px;
             cursor: pointer;
-            transition: all 0.25s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             flex: 1;
             text-align: center;
             white-space: nowrap;
         }
 
         .tab-btn:hover {
-            background: rgba(167, 139, 250, 0.08);
-            border-color: rgba(167, 139, 250, 0.3);
+            background: linear-gradient(135deg, rgba(255, 126, 179, 0.1), rgba(167, 139, 250, 0.15));
+            border-color: rgba(167, 139, 250, 0.25);
             color: #ffffff;
+            text-shadow: 0 0 8px rgba(167, 139, 250, 0.6);
             transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(167, 139, 250, 0.1);
+        }
+
+        /* Bouton Retour en haut flottant */
+        .scroll-to-top-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #181824, #13131a);
+            border: 1px solid rgba(167, 139, 250, 0.3);
+            color: #a78bfa;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .scroll-to-top-btn.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top-btn:hover {
+            transform: translateY(-5px);
+            border-color: #ff758c;
+            color: #ffffff;
+            box-shadow: 0 6px 25px rgba(167, 139, 250, 0.25);
+            background: linear-gradient(135deg, #1c1c2b, #151522);
         }
 
         /* Message si aucun résultat */
@@ -484,8 +527,8 @@
         @media (max-width: 900px) {
             .header-container { flex-direction: column; gap: 15px; text-align: center; }
             .search-container { width: 100% !important; }
-            .tabs-navigation { flex-wrap: wrap; }
-            .tab-btn { min-width: 100px; }
+            .tabs-navigation { flex-wrap: wrap; background: transparent; border: none; backdrop-filter: none; }
+            .tab-btn { min-width: 100px; background: rgba(255, 255, 255, 0.02); border-color: rgba(255, 255, 255, 0.05); }
         }
 
         @media (max-width: 768px) {
@@ -494,6 +537,8 @@
     </style>
 </head>
 <body>
+
+    <button class="scroll-to-top-btn" id="scrollTopBtn" onclick="scrollToTop()" title="Remonter en haut">↑</button>
 
     <header class="header-container">
         <div class="left-header-block">
@@ -697,7 +742,7 @@
                         </div>
                         <div class="movie-date">📅 Sortie : 15 Juillet 2026</div>
                         <div class="movie-synopsis">
-                            Une fresque épique et spectaculaire qui réinvente les plus grands mythes maritimes. Suivez le voyage semé d'embûches d'un équipage courageux luttant contre les éléments et des forces mystérieuses pour retrouver le chemin de leur patrie.
+                            Une fresque épique et spectaculaire qui réinvente les plus grands mythes maritimes. Suivez le voyage semé d'embûches d'un équipage courageux luttant contre les éléments et des forces mystérieures pour retrouver le chemin de leur patrie.
                         </div>
                         <span class="click-hint">Cliquez pour voir le résumé</span>
                     </div>
@@ -715,7 +760,7 @@
                         </div>
                         <div class="movie-date">📅 Sortie : 17 Juin 2026</div>
                         <div class="movie-synopsis">
-                            Inspiré du célèbre phénomène Internet d'horreur psychologique et des creepypastas. Un young vidéaste se retrouve accidentellement piégé dans un labyrinthe infini et oppressant de pièces vides aux murs jaunes, traqué par des entités mystérieuses.
+                            Inspiré du célèbre phénomène Internet d'horreur psychologique et des creepypastas. Un jeune vidéaste se retrouve accidentellement piégé dans un labyrinthe infini et oppressant de pièces vides aux murs jaunes, traqué par des entités mystérieuses.
                         </div>
                         <span class="click-hint">Cliquez pour voir le résumé</span>
                     </div>
@@ -872,6 +917,25 @@
                 document.getElementById("app-version").textContent = "Version 0.2";
             }
         }, 1000);
+
+
+        // --- GESTION DU BOUTON RETOUR EN HAUT (SCROLL) ---
+        const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+        window.onscroll = function() {
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                scrollTopBtn.classList.add("visible");
+            } else {
+                scrollTopBtn.classList.remove("visible");
+            }
+        };
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
 
 
         // --- GESTION AUTOMATIQUE DES DATES DE CINÉMA ---
