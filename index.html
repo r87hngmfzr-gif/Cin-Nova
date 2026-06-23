@@ -12,7 +12,7 @@
             background-color: #0d0d11; 
             color: #e2e8f0;
             font-family: 'Poppins', 'Segoe UI', sans-serif;
-            scroll-behavior: smooth; /* Permet le défilement fluide */
+            scroll-behavior: smooth;
         }
 
         /* Barre d'en-tête principale */
@@ -282,7 +282,7 @@
             gap: 40px; 
         }
 
-        .small-movies-grid, .series-grid {
+        .small-movies-grid, .series-grid, .anime-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 25px;
@@ -325,9 +325,8 @@
             font-weight: 600;
         }
 
-        .movie-type.series-type {
-            color: #3b82f6; 
-        }
+        .movie-type.series-type { color: #3b82f6; }
+        .movie-type.anime-type { color: #10b981; }
 
         .movie-title {
             margin: 0 0 12px 0;
@@ -384,7 +383,7 @@
 
         .movie-date { font-size: 0.9rem; color: #ff758c; font-weight: 500; }
 
-        /* Badge vert pour le contenu disponible */
+        /* Badge vert pour le contenu disponible (Films, Séries et Animes) */
         .now-playing-badge {
             background: rgba(34, 197, 94, 0.15);
             border: 1px solid #22c55e;
@@ -532,7 +531,7 @@
         }
 
         @media (max-width: 768px) {
-            .movies-grid, .small-movies-grid, .series-grid { grid-template-columns: 1fr; }
+            .movies-grid, .small-movies-grid, .series-grid, .anime-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -773,8 +772,9 @@
             <h2 class="section-title" id="title-series">Séries</h2>
             <div class="series-grid">
 
-                <article class="movie-card small" onclick="toggleSynopsis(this)">
+                <article class="movie-card small" data-date-sortie="2026-06-25" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
+                        <div class="now-playing-badge">🟢 EST SORTI(E) !</div>
                         <span class="movie-type series-type">📺 Série • Saison 2</span>
                         <h2 class="movie-title">Avatar: The Last Airbender</h2>
                         <div class="movie-tags">
@@ -791,8 +791,9 @@
                     </div>
                 </article>
 
-                <article class="movie-card small" onclick="toggleSynopsis(this)">
+                <article class="movie-card small" data-date-sortie="2026-06-26" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
+                        <div class="now-playing-badge">🟢 EST SORTI(E) !</div>
                         <span class="movie-type series-type">📺 Série • Saison 5</span>
                         <h2 class="movie-title">The Bear</h2>
                         <div class="movie-tags">
@@ -808,8 +809,9 @@
                     </div>
                 </article>
 
-                <article class="movie-card small" onclick="toggleSynopsis(this)">
+                <article class="movie-card small" data-date-sortie="2026-10-23" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
+                        <div class="now-playing-badge">🟢 EST SORTI(E) !</div>
                         <span class="movie-type series-type">📺 Série • Saison 4</span>
                         <h2 class="movie-title">Lupin</h2>
                         <div class="movie-tags">
@@ -826,8 +828,9 @@
                     </div>
                 </article>
 
-                <article class="movie-card small" onclick="toggleSynopsis(this)">
+                <article class="movie-card small" data-date-sortie="2026-12-25" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
+                        <div class="now-playing-badge">🟢 EST SORTI(E) !</div>
                         <span class="movie-type series-type">📺 Série • Saison 1</span>
                         <h2 class="movie-title">Harry Potter</h2>
                         <div class="movie-tags">
@@ -848,8 +851,45 @@
 
         <div class="section-block" id="sect-anime">
             <h2 class="section-title" id="title-anime">ANIMES</h2>
-            <div class="coming-soon-box">
-                Non disponible pour le moment 🚫
+            <div class="anime-grid">
+
+                <article class="movie-card small" data-date-sortie="2026-06-20" onclick="toggleSynopsis(this)">
+                    <div class="movie-info">
+                        <div class="now-playing-badge">🟢 EST SORTI(E) !</div>
+                        <span class="movie-type anime-type">🍥 Anime • Saison Finale</span>
+                        <h2 class="movie-title">Demon Slayer: Infinity Castle</h2>
+                        <div class="movie-tags">
+                            <span class="tag-provider">Crunchyroll</span>
+                            <span class="tag-genre">Action</span>
+                            <span class="tag-genre">Animation</span>
+                            <span class="tag-classification">Avertissement</span>
+                        </div>
+                        <div class="movie-date">📅 Sortie : 20 Juin 2026</div>
+                        <div class="movie-synopsis">
+                            Le combat ultime contre Muzan Kibutsuji commence au cœur de la Forteresse Dimensionnelle Infinie. Les piliers restants et Tanjiro jettent leurs dernières forces dans cette bataille historique.
+                        </div>
+                        <span class="click-hint">Cliquez pour voir le résumé</span>
+                    </div>
+                </article>
+
+                <article class="movie-card small" data-date-sortie="2026-07-12" onclick="toggleSynopsis(this)">
+                    <div class="movie-info">
+                        <div class="now-playing-badge">🟢 EST SORTI(E) !</div>
+                        <span class="movie-type anime-type">🍥 Anime • Saison 3</span>
+                        <h2 class="movie-title">One-Punch Man</h2>
+                        <div class="movie-tags">
+                            <span class="tag-genre">Action</span>
+                            <span class="tag-genre">Comédie</span>
+                            <span class="tag-classification all-audiences">Tout Public</span>
+                        </div>
+                        <div class="movie-date">📅 Sortie : 12 Juillet 2026</div>
+                        <div class="movie-synopsis">
+                            L'Association des Monstres lance son offensive générale contre les Héros. Saitama tente tant bien que mal de trouver un adversaire à sa mesure au milieu de ce chaos généralisé.
+                        </div>
+                        <span class="click-hint">Cliquez pour voir le résumé</span>
+                    </div>
+                </article>
+
             </div>
         </div>
 
@@ -938,14 +978,15 @@
         }
 
 
-        // --- GESTION AUTOMATIQUE DES DATES DE CINÉMA ---
+        // --- GESTION AUTOMATIQUE GLOBALE (FILMS, SÉRIES, ANIMES) ---
         document.addEventListener("DOMContentLoaded", function() {
             const aujourdhui = new Date();
             aujourdhui.setHours(0, 0, 0, 0);
 
-            const cartesFilms = document.querySelectorAll(".movie-card[data-date-sortie]");
+            // Cible absolument TOUTES les cartes possédant une date de sortie
+            const cartesContenus = document.querySelectorAll(".movie-card[data-date-sortie]");
 
-            cartesFilms.forEach(carte => {
+            cartesContenus.forEach(carte => {
                 const dateSortieStr = carte.getAttribute("data-date-sortie");
                 if (!dateSortieStr) return;
 
@@ -955,10 +996,13 @@
                 const differenceTemps = aujourdhui.getTime() - dateSortie.getTime();
                 const differenceJours = Math.floor(differenceTemps / (1000 * 60 * 60 * 24));
 
+                // Si la date est aujourd'hui ou est passée
                 if (differenceJours >= 0) {
                     if (differenceJours > 10) {
+                        // EFFACEMENT AUTOMATIQUE APRÈS 10 JOURS
                         carte.remove();
                     } else {
+                        // AFFICHAGE AUTOMATIQUE DU BOUTON VERT "EST SORTI(E) !"
                         const badgeVert = carte.querySelector(".now-playing-badge");
                         const texteDate = carte.querySelector(".movie-date");
 
