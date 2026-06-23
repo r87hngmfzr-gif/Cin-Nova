@@ -779,6 +779,13 @@
                 Non disponible pour le moment 🚫
             </div>
         </div>
+
+        <div class="section-block" id="sect-calendrier">
+            <h2 class="section-title">CALENDRIER</h2>
+            <div class="coming-soon-box">
+                Non disponible pour le moment 🚫
+            </div>
+        </div>
     </main>
 
     <main class="page-view" id="news-page">
@@ -829,20 +836,16 @@
             const maintenant = new Date().getTime();
             const distance = dateCible - maintenant;
 
-            // Calcul du temps pour les jours, heures, minutes et secondes
             const jours = Math.floor(distance / (1000 * 60 * 60 * 24));
             const heures = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const secondes = Math.floor((distance % (1000 * 60)) / 1000);
 
-            // Rendu dynamique du texte dans la case de gauche
             document.getElementById("countdown-text").innerHTML = "⏳ Prochaine MÀJ dans : <b>" + jours + "j " + heures + "h " + minutes + "m " + secondes + "s</b>";
 
-            // Si le compte à rebours expire
             if (distance < 0) {
                 clearInterval(x);
                 document.getElementById("countdown-text").innerHTML = "✨ <b>Mise à jour en cours...</b>";
-                // Changement de version à l'arrivée à zéro
                 document.getElementById("app-version").textContent = "Version 0.2";
             }
         }, 1000);
@@ -927,8 +930,19 @@
             });
 
             sections.forEach(sect => {
+                // Gestion spécifique pour les sections vides d'attente (Animes et Calendrier)
                 if (sect.id === 'sect-anime') {
                     if (query !== "" && ! "animes".includes(query)) {
+                        sect.style.display = "none";
+                    } else {
+                        sect.style.display = "block";
+                        if (query !== "") totalVisible++;
+                    }
+                    return;
+                }
+                
+                if (sect.id === 'sect-calendrier') {
+                    if (query !== "" && ! "calendrier".includes(query)) {
                         sect.style.display = "none";
                     } else {
                         sect.style.display = "block";
