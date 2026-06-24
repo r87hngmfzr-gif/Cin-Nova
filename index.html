@@ -61,14 +61,14 @@
             margin: 0 auto;
         }
 
-        /* Conteneur Central : Titre Texte + Icône News */
+        /* Conteneur Central : Titre Texte + Icônes */
         .title-container {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
         }
 
-        /* Le grand titre en texte comme avant */
+        /* Le grand titre en texte */
         .main-title {
             font-size: 2.2rem;
             font-weight: 800;
@@ -105,6 +105,30 @@
             background: rgba(167, 139, 250, 0.1);
             border-color: rgba(167, 139, 250, 0.3);
             transform: scale(1.08);
+        }
+
+        /* BOUTON LIEN EN BIO */
+        .bio-link-btn {
+            background: linear-gradient(135deg, rgba(255, 117, 140, 0.15), rgba(167, 139, 250, 0.15));
+            border: 1px solid rgba(167, 139, 250, 0.4);
+            color: #ffffff;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 10px 14px;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            box-shadow: 0 0 15px rgba(167, 139, 250, 0.1);
+        }
+
+        .bio-link-btn:hover {
+            transform: scale(1.05);
+            border-color: #ff758c;
+            box-shadow: 0 0 20px rgba(255, 117, 140, 0.2);
         }
 
         /* Conteneur Barre de recherche tout à droite */
@@ -148,7 +172,7 @@
             user-select: none;
         }
 
-        /* Barre d'onglets de navigation AESTHETIC */
+        /* Barre d'onglets de navigation */
         .tabs-navigation {
             display: flex;
             justify-content: flex-start;
@@ -605,6 +629,7 @@
         <div class="title-container">
             <h1 class="main-title" onclick="showPage('home-page')">Ciné Nova</h1>
             <button class="news-btn" onclick="showPage('news-page')">📰</button>
+            <a href="#" class="bio-link-btn">🔗 Lien en bio</a>
         </div>
 
         <div class="search-container">
@@ -626,7 +651,7 @@
         <div id="no-results" class="no-results-msg">Aucun contenu ne correspond à votre recherche.</div>
 
         <div class="section-block" id="sect-affiche">
-            <h2 class="section-title" id="title-affiche" style="margin-top: 20px;">Films à l'affiche</h2>
+            <h2 class="section-title" id="title-affiche" style="margin-top: 20px;">À l'affiche</h2>
             <div class="movies-grid">
                 
                 <article class="movie-card large" data-date-sortie="2026-07-29" data-date-ajout="2026-07-29" onclick="toggleSynopsis(this)">
@@ -649,19 +674,22 @@
                     </div>
                 </article>
 
-                <article class="movie-card large" data-date-sortie="2027-03-24" data-date-ajout="2026-06-24" onclick="toggleSynopsis(this)">
+                <article class="movie-card large" data-date-sortie="2026-08-20" data-date-ajout="2026-06-23" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
                         <div class="recent-tag">🆕 Ajouter Récemment</div>
                         <div class="now-playing-badge">🟢 EST SORTI(E) !</div>
-                        <span class="movie-type">🎬 Film • SEGA</span>
-                        <h2 class="movie-title">Sonic 4</h2>
+                        <span class="movie-type series-type">📺 Série • Saison Finale</span>
+                        <h2 class="movie-title">Outer Banks</h2>
                         <div class="movie-tags">
+                            <span class="tag-provider">Netflix</span>
                             <span class="tag-genre">Aventure</span>
-                            <span class="tag-genre">Action</span>
-                            <span class="tag-classification all-audiences">Tout Public</span>
+                            <span class="tag-genre">Drame</span>
+                            <span class="tag-classification">Avertissement</span>
                         </div>
-                        <div class="movie-date">📅 Sortie : 24 Mars 2027</div>
-                        <div class="movie-synopsis">Le célèbre hérisson bleu revient à toute vitesse dans une nouvelle aventure aux côtés de ses fidèles amis.</div>
+                        <div class="movie-date">📅 Sortie : 20 Août 2026</div>
+                        <div class="movie-synopsis">
+                            L'ultime chapitre des aventures des Pogues. Entre chasses aux trésors de grande envergure, secrets de famille révélés et dangers mortels, la bande d'amis devra s'unir une dernière fois pour sécuriser leur avenir et clore leur saga légendaire.
+                        </div>
                         <span class="click-hint">Cliquez pour voir le résumé</span>
                     </div>
                 </article>
@@ -1008,26 +1036,6 @@
         <div class="section-block" id="sect-series">
             <h2 class="section-title" id="title-series">Séries</h2>
             <div class="series-grid">
-
-                <article class="movie-card small" data-date-sortie="2026-08-20" data-date-ajout="2026-06-23" onclick="toggleSynopsis(this)">
-                    <div class="movie-info">
-                        <div class="recent-tag">🆕 Ajouter Récemment</div>
-                        <div class="now-playing-badge">🟢 EST SORTI(E) !</div>
-                        <span class="movie-type series-type">📺 Série • Saison Finale</span>
-                        <h2 class="movie-title">Outer Banks</h2>
-                        <div class="movie-tags">
-                            <span class="tag-provider">Netflix</span>
-                            <span class="tag-genre">Aventure</span>
-                            <span class="tag-genre">Drame</span>
-                            <span class="tag-classification">Avertissement</span>
-                        </div>
-                        <div class="movie-date">📅 Sortie : 20 Août 2026</div>
-                        <div class="movie-synopsis">
-                            L'ultime chapitre des aventures des Pogues. Entre chasses aux trésors de grande envergure, secrets de famille révélés et dangers mortels, la bande d'amis devra s'unir une dernière fois pour sécuriser leur avenir et clore leur saga légendaire.
-                        </div>
-                        <span class="click-hint">Cliquez pour voir le résumé</span>
-                    </div>
-                </article>
 
                 <article class="movie-card small" data-date-sortie="2026-06-25" data-date-ajout="2026-06-25" onclick="toggleSynopsis(this)">
                     <div class="movie-info">
